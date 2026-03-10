@@ -15,10 +15,7 @@ const artisteRepresentations = representations.filter(
     (rep) => rep.expand?.artiste?.id === id,
 );
 
-// photo_principale = fichier simple
 const photo = artiste?.photo_principale ?? null;
-
-// galerie_photo = fichiers multiples
 const galerie = artiste?.galerie_photo ?? [];
 ---
 
@@ -26,50 +23,51 @@ const galerie = artiste?.galerie_photo ?? [];
     {
         artiste ? (
             <>
-                <section class="page-hero page-hero--small">
-                    <h1 class="page-hero__title">{artiste.nom}</h1>
-                    <p class="page-hero__intro">
+                <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
+                    <h1 class="mb-4 text-5xl md:text-7xl">{artiste.nom}</h1>
+                    <p class="mx-auto max-w-2xl text-lg md:text-xl">
                         {artiste.genre_musical ?? "Genre non renseigné"}
                     </p>
                 </section>
 
-                <section class="artiste-detail">
-                    <div class="artiste-detail__media">
+                <section class="mx-auto grid max-w-6xl gap-8 px-6 pb-12 md:grid-cols-2">
+                    <div>
                         {photo ? (
                             <img
                                 src={getImageUrl(artiste, photo)}
                                 alt={`Photo de ${artiste.nom}`}
-                                class="artiste-detail__img"
+                                class="aspect-[4/5] w-full border border-[var(--light-v)] object-cover"
                             />
                         ) : (
-                            <div class="artiste-detail__placeholder">
+                            <div class="flex aspect-[4/5] w-full items-center justify-center border border-[var(--light-v)] bg-white/5 text-center">
                                 Aucune image disponible
                             </div>
                         )}
                     </div>
 
-                    <div class="artiste-detail__content">
-                        <h2 class="artiste-detail__subtitle">Présentation</h2>
+                    <div>
+                        <h2 class="mb-4 text-4xl md:text-5xl">Présentation</h2>
 
                         <div
-                            class="artiste-detail__text"
+                            class="mb-8 space-y-4"
                             set:html={
                                 artiste.description ??
                                 "<p>Aucune description disponible.</p>"
                             }
                         />
 
-                        <h2 class="artiste-detail__subtitle">
+                        <h2 class="mb-4 text-4xl md:text-5xl">
                             Au programme du festival
                         </h2>
 
                         {artisteRepresentations.length > 0 ? (
-                            <ul class="artiste-detail__list">
+                            <ul class="mb-8 list-disc space-y-3 pl-5">
                                 {artisteRepresentations.map((rep) => (
-                                    <li class="artiste-detail__item">
+                                    <li>
                                         <strong>
                                             {rep.date_representation
-                                                ?.split("-")
+                                                ?.slice(0, 10)
+                                                .split("-")
                                                 .reverse()
                                                 .join("/")}
                                         </strong>
@@ -83,26 +81,28 @@ const galerie = artiste?.galerie_photo ?? [];
                                 ))}
                             </ul>
                         ) : (
-                            <p class="artiste-detail__text">
-                                Aucune représentation trouvée.
-                            </p>
+                            <p class="mb-8">Aucune représentation trouvée.</p>
                         )}
 
-                        <a href="/artistes" class="artiste-detail__back">
+                        <a
+                            href="/artistes"
+                            class="inline-block border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
+                        >
                             ← Retour aux artistes
                         </a>
                     </div>
                 </section>
 
                 {galerie.length > 0 && (
-                    <section class="artiste-gallery">
-                        <h2 class="artiste-gallery__title">Galerie</h2>
-                        <div class="artiste-gallery__grid">
+                    <section class="mx-auto max-w-6xl px-6 pb-16">
+                        <h2 class="mb-6 text-4xl md:text-5xl">Galerie</h2>
+
+                        <div class="grid gap-4 md:grid-cols-2">
                             {galerie.map((image) => (
                                 <img
                                     src={getImageUrl(artiste, image)}
                                     alt={`Galerie de ${artiste.nom}`}
-                                    class="artiste-gallery__img"
+                                    class="aspect-[4/3] w-full border border-[var(--light-v)] object-cover"
                                 />
                             ))}
                         </div>
@@ -110,9 +110,9 @@ const galerie = artiste?.galerie_photo ?? [];
                 )}
             </>
         ) : (
-            <section class="page-hero page-hero--small">
-                <h1 class="page-hero__title">Artiste introuvable</h1>
-                <p class="page-hero__intro">
+            <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
+                <h1 class="mb-4 text-5xl md:text-7xl">Artiste introuvable</h1>
+                <p class="mx-auto max-w-2xl text-lg md:text-xl">
                     Cet artiste n’existe pas ou n’est plus disponible.
                 </p>
             </section>

@@ -1,48 +1,106 @@
-<footer class="footer">
-    <nav class="footer__nav">
-        <ul class="u-list-unstyled footer__list">
-            <li class="footer__item">
-                <a class="footer__link" href="/programme">Programme</a>
-            </li>
-            <li class="footer__item">
-                <a class="footer__link" href="/infos-pratiques"
-                    >Informations pratiques</a
-                >
-            </li>
-            <li class="footer__item">
-                <a class="footer__link" href="/a-propos">À propos</a>
-            </li>
-            <li class="footer__item">
-                <a class="footer__link" href="/contact">Contact</a>
-            </li>
-        </ul>
+---
+import Layout from "../layouts/Layout.astro";
+---
 
-        <ul class="u-list-unstyled footer__list--rs">
-            <li class="footer__item">
-                <a class="footer__link--rs" href="#">Instagram</a>
-            </li>
-            <li class="footer__item">
-                <a class="footer__link--rs" href="#">Facebook</a>
-            </li>
-            <li class="footer__item">
-                <a class="footer__link--rs" href="#">Podcasts</a>
-            </li>
-        </ul>
-    </nav>
+<Layout title="Accueil - Chorus Symphonia">
+    <section
+        id="hero"
+        class="flex min-h-screen flex-col items-center justify-end bg-[url('/img/Accueil/fondetoileacceuil.avif')] bg-cover bg-center bg-no-repeat px-6 pb-12 pt-32 text-center md:pb-16 md:pt-40"
+    >
+        <img
+            src="/icons/logofestival.svg"
+            alt="Logo Chorus Symphonia"
+            class="w-full max-w-xl"
+        />
 
-    <img
-        class="footer__logo"
-        src="/assets/icons/logoblanc-021.svg"
-        alt="Logo du site Chorus Symphonia"
-    />
+        <p class="mt-4 text-2xl md:text-3xl">28–31 août 2026</p>
+    </section>
 
-    <p class="footer__mentions">Chorus Symphonia</p>
+    <section class="mx-auto max-w-4xl px-6 py-12 text-center">
+        <h1 class="text-5xl md:text-7xl">
+            Festival de musique classique à la Citadelle de Besançon
+        </h1>
+    </section>
 
-    <p class="disclaimer">
-        Projet réalisé dans le cadre d’un exercice pédagogique au
-        <a href="https://mmi.univ-fcomte.fr/">département MMi de Montbéliard</a
-        >.
-    </p>
-    <a class="footer__link" href="/a-propos">À propos</a>
-    
-</footer>
+    <section class="flex justify-center px-6 pb-12">
+        <a
+            href="#"
+            class="inline-block border border-[var(--light-v)] bg-[var(--yellow)] px-6 py-4 text-lg font-bold text-[var(--v-dark)] transition hover:bg-transparent hover:text-[var(--light-v)]"
+        >
+            Je prends mon billet !
+        </a>
+    </section>
+
+    <section
+        aria-label="Accès rapides"
+        class="mx-auto grid max-w-6xl gap-8 px-6 pb-16 md:grid-cols-2 lg:grid-cols-3"
+    >
+        <a
+            href="/programme"
+            class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
+        >
+            <img
+                src="/img/Accueil/vitrineprogrammeacceuil.avif"
+                alt="Aller à la page Programme"
+                class="h-full w-full object-cover"
+            />
+            <span
+                class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
+            >
+                Programme
+            </span>
+        </a>
+
+        <a
+            href="/artistes"
+            class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
+        >
+            <img
+                src="/img/Accueil/vitrineartistesacceuil.avif"
+                alt="Aller à la page Artistes"
+                class="h-full w-full object-cover"
+            />
+            <span
+                class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
+            >
+                Artistes
+            </span>
+        </a>
+
+        <a
+            href="/infos-pratiques"
+            class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
+        >
+            <img
+                src="/img/Accueil/vitrineinformationsacceuil.avif"
+                alt="Aller à la page Informations pratiques"
+                class="h-full w-full object-cover"
+            />
+            <span
+                class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
+            >
+                Informations pratiques
+            </span>
+        </a>
+    </section>
+
+    <section class="mx-auto max-w-6xl px-6 pb-16 text-center">
+        <h2 class="mb-8 text-4xl md:text-5xl">Ils nous soutiennent</h2>
+
+        <div class="grid gap-6 md:grid-cols-3">
+            <div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
+                <p class="text-lg uppercase tracking-[0.2em]">
+                    La Citadelle de Besançon
+                </p>
+            </div>
+            <div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
+                <p class="text-lg uppercase tracking-[0.2em]">Arte</p>
+            </div>
+            <div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
+                <p class="text-lg uppercase tracking-[0.2em]">
+                    L’Est Républicain
+                </p>
+            </div>
+        </div>
+    </section>
+</Layout>

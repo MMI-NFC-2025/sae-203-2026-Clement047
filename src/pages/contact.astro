@@ -3,82 +3,86 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Contact - Chorus Symphonia">
-    <section class="page-hero page-hero--small">
-        <h1 class="page-hero__title">Contact</h1>
-        <p class="page-hero__intro">
+    <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
+        <h1 class="mb-4 text-5xl md:text-7xl">Contact</h1>
+        <p class="mx-auto max-w-2xl text-lg md:text-xl">
             Une question sur le festival, la programmation ou l’accès au site ?
             Contactez-nous via le formulaire ci-dessous.
         </p>
     </section>
 
-    <section class="contact-page">
-        <div class="contact-page__content">
-            <h2 class="contact-page__title">Nous écrire</h2>
+    <section
+        class="mx-auto grid max-w-6xl gap-8 px-6 pb-16 md:grid-cols-[2fr_1fr]"
+    >
+        <div>
+            <h2 class="mb-6 text-4xl md:text-5xl">Nous écrire</h2>
 
-            <form class="contact-form" method="post">
-                <div class="contact-form__group">
-                    <label for="nom" class="contact-form__label">Nom</label>
+            <form method="post" class="flex flex-col gap-5">
+                <div class="flex flex-col gap-2">
+                    <label for="nom" class="font-bold">Nom</label>
                     <input
                         type="text"
                         id="nom"
                         name="nom"
-                        class="contact-form__input"
                         required
+                        class="w-full border border-[var(--light-v)] bg-transparent px-4 py-3 text-[var(--light-v)] outline-none"
                     />
                 </div>
 
-                <div class="contact-form__group">
-                    <label for="email" class="contact-form__label">Email</label>
+                <div class="flex flex-col gap-2">
+                    <label for="email" class="font-bold">Email</label>
                     <input
                         type="email"
                         id="email"
                         name="email"
-                        class="contact-form__input"
                         required
+                        class="w-full border border-[var(--light-v)] bg-transparent px-4 py-3 text-[var(--light-v)] outline-none"
                     />
                 </div>
 
-                <div class="contact-form__group">
-                    <label for="sujet" class="contact-form__label">Sujet</label>
+                <div class="flex flex-col gap-2">
+                    <label for="sujet" class="font-bold">Sujet</label>
                     <input
                         type="text"
                         id="sujet"
                         name="sujet"
-                        class="contact-form__input"
                         required
+                        class="w-full border border-[var(--light-v)] bg-transparent px-4 py-3 text-[var(--light-v)] outline-none"
                     />
                 </div>
 
-                <div class="contact-form__group">
-                    <label for="message" class="contact-form__label"
-                        >Message</label
-                    >
+                <div class="flex flex-col gap-2">
+                    <label for="message" class="font-bold">Message</label>
                     <textarea
                         id="message"
                         name="message"
-                        class="contact-form__textarea"
                         rows="6"
-                        required></textarea>
+                        required
+                        class="min-h-[180px] w-full resize-y border border-[var(--light-v)] bg-transparent px-4 py-3 text-[var(--light-v)] outline-none"
+                    ></textarea>
                 </div>
 
-                <button type="submit" class="contact-form__button">
+                <button
+                    type="submit"
+                    class="inline-block self-start border border-[var(--light-v)] bg-[var(--vi)] px-4 py-3 font-bold transition hover:bg-transparent"
+                >
                     Envoyer
                 </button>
             </form>
         </div>
 
-        <aside class="contact-page__infos">
-            <h2 class="contact-page__title">Informations utiles</h2>
+        <aside>
+            <h2 class="mb-6 text-4xl md:text-5xl">Informations utiles</h2>
 
-            <p class="contact-page__text">
+            <p class="mb-4">
                 <strong>Email :</strong> contact@chorussymphonia.fr
             </p>
 
-            <p class="contact-page__text">
+            <p class="mb-4">
                 <strong>Téléphone :</strong> 03 81 00 00 00
             </p>
 
-            <p class="contact-page__text">
+            <p class="mb-4">
                 <strong>Adresse :</strong><br />
                 Citadelle de Besançon<br />
                 99 Rue des Fusillés de la Résistance<br />

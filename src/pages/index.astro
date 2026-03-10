@@ -3,76 +3,104 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Accueil - Chorus Symphonia">
-	<section class="home-hero" id="hero">
+	<section
+		id="hero"
+		class="flex min-h-screen flex-col items-center justify-end bg-[url('/img/Accueil/fondetoileaccueil.avif')] bg-cover bg-center bg-no-repeat px-6 pb-12 pt-32 text-center md:pb-16 md:pt-40"
+	>
 		<img
 			src="/icons/logofestival.svg"
 			alt="Logo Chorus Symphonia"
-			class="home-hero__logo"
+			class="w-full max-w-xl"
 		/>
 
-		<p class="home-hero__dates">28–31 août 2026</p>
+		<p class="mt-4 text-2xl md:text-3xl">28–31 août 2026</p>
 	</section>
 
-	<section class="section-intro">
-		<h1 class="section-intro__title">
+	<section class="mx-auto max-w-4xl px-6 py-12 text-center">
+		<h1 class="text-5xl md:text-7xl">
 			Festival de musique classique à la Citadelle de Besançon
 		</h1>
 	</section>
 
-	<section class="cta">
-		<a href="#" class="cta-btn">Je prends mon billet !</a>
+	<section class="flex justify-center px-6 pb-12">
+		<a
+			href="#"
+			class="inline-block border border-[var(--light-v)] bg-[var(--yellow)] px-6 py-4 text-lg font-bold text-[var(--v-dark)] transition hover:bg-transparent hover:text-[var(--light-v)]"
+		>
+			Je prends mon billet !
+		</a>
 	</section>
 
-	<section class="home-cards" aria-label="Accès rapides">
-		<a href="/programme" class="home-card">
+	<section
+		aria-label="Accès rapides"
+		class="mx-auto grid max-w-6xl gap-8 px-6 pb-16 md:grid-cols-2 lg:grid-cols-3"
+	>
+		<a
+			href="/programme"
+			class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
+		>
 			<img
-				src="/img/Programme/card-programme.webp"
+				src="/img/Accueil/vitrineprogrammeaccueil.avif"
 				alt="Aller à la page Programme"
-				class="home-card__img"
+				class="h-full w-full object-cover"
 			/>
-			<span class="home-card__label">Programme</span>
+			<span
+				class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
+			>
+				Programme
+			</span>
 		</a>
 
-		<a href="/artistes" class="home-card">
+		<a
+			href="/artistes"
+			class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
+		>
 			<img
-				src="/img/Artistes/card-artistes.webp"
+				src="/img/Accueil/vitrineartistesaccueil.avif"
 				alt="Aller à la page Artistes"
-				class="home-card__img"
+				class="h-full w-full object-cover"
 			/>
-			<span class="home-card__label">Artistes</span>
+			<span
+				class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
+			>
+				Artistes
+			</span>
 		</a>
 
-		<a href="/infos-pratiques" class="home-card">
+		<a
+			href="/infos-pratiques"
+			class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
+		>
 			<img
-				src="/img/Informations/card-informations.webp"
+				src="/img/Accueil/vitrineinformationsaccueil.avif"
 				alt="Aller à la page Informations pratiques"
-				class="home-card__img"
+				class="h-full w-full object-cover"
 			/>
-			<span class="home-card__label">Informations pratiques</span>
+			<span
+				class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
+			>
+				Informations pratiques
+			</span>
 		</a>
 	</section>
 
-	<section class="partners" aria-labelledby="partners-title">
-		<h2 id="partners-title" class="partners__title">
-			Ils nous soutiennent
-		</h2>
+	<section class="mx-auto max-w-6xl px-6 pb-16 text-center">
+		<h2 class="mb-8 text-4xl md:text-5xl">Ils nous soutiennent</h2>
 
-		<div class="partners__logos">
-			<img
-				src="/img/Accueil/logocitadelle1.webp"
-				alt="Logo de la Citadelle de Besançon"
-				class="partners__logo"
-			/>
-			<img
-				src="/img/Accueil/artelogo1.webp"
-				alt="Logo Arte"
-				class="partners__logo"
-			/>
-			<img
-				src="/img/Accueil/estrepublicainlogo1.webp"
-				alt="Logo de l'Est Républicain"
-				class="partners__logo"
-			/>
+		<div class="grid gap-6 md:grid-cols-3">
+			<div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
+				<p class="text-lg uppercase tracking-[0.2em]">
+					La Citadelle de Besançon
+				</p>
+			</div>
+			<div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
+				<p class="text-lg uppercase tracking-[0.2em]">Arte</p>
+			</div>
+			<div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
+				<p class="text-lg uppercase tracking-[0.2em]">
+					L’Est Républicain
+				</p>
+			</div>
 		</div>
 	</section>
 </Layout>

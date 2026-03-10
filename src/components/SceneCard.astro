@@ -7,22 +7,26 @@ const nom = scene?.nom ?? "Scène";
 const photo = scene?.photo ?? null;
 ---
 
-<article class="scene-card">
-    <a href={`/scenes/${scene.id}`} class="scene-card__link">
+<article
+    class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
+>
+    <a href={`/scenes/${scene.id}`} class="block h-full">
         {
             photo ? (
                 <img
                     src={getImageUrl(scene, photo)}
                     alt={`Photo de ${nom}`}
-                    class="scene-card__img"
+                    class="aspect-[4/3] w-full object-cover"
                 />
             ) : (
-                <div class="scene-card__placeholder">Aucune image</div>
+                <div class="flex aspect-[4/3] w-full items-center justify-center bg-white/5 text-center">
+                    Aucune image
+                </div>
             )
         }
 
-        <div class="scene-card__content">
-            <h2 class="scene-card__title">{nom}</h2>
+        <div class="p-4">
+            <h2 class="text-4xl leading-none md:text-5xl">{nom}</h2>
         </div>
     </a>
 </article>

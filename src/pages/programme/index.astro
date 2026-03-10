@@ -48,28 +48,42 @@ const uniqueScenes = [
         representations.map((rep) => rep.expand?.scene?.nom).filter(Boolean),
     ),
 ];
+
+const uniqueGenres = [
+    ...new Set(
+        representations
+            .map((rep) => rep.expand?.artiste?.genre_musical)
+            .filter(Boolean),
+    ),
+];
 ---
 
 <Layout title="Programme - Chorus Symphonia">
-    <section class="page-hero page-hero--small">
-        <h1 class="page-hero__title">Programme</h1>
-        <p class="page-hero__intro">
+    <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
+        <h1 class="mb-4 text-6xl md:text-7xl">Programme</h1>
+        <p class="mx-auto max-w-2xl text-lg md:text-xl">
             Découvrez la programmation du festival et filtrez les
-            représentations par jour ou par scène.
+            représentations par jour, par scène ou par genre.
         </p>
     </section>
 
-    <section class="filters">
-        <div class="filters__group">
-            <h2 class="filters__title">Filtrer par jour</h2>
-            <div class="filters__buttons">
-                <button class="filter-btn filter-date active" data-date="all">
+    <section class="mx-auto max-w-6xl px-6 pb-8">
+        <div class="mb-8">
+            <h2 class="mb-4 text-3xl md:text-4xl">Filtrer par jour</h2>
+            <div class="flex flex-wrap gap-3">
+                <button
+                    class="filter-btn filter-date active border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
+                    data-date="all"
+                >
                     Tous les jours
                 </button>
 
                 {
                     uniqueDates.map((date) => (
-                        <button class="filter-btn filter-date" data-date={date}>
+                        <button
+                            class="filter-btn filter-date border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
+                            data-date={date}
+                        >
                             {formatDateLabel(date)}
                         </button>
                     ))
@@ -77,17 +91,20 @@ const uniqueScenes = [
             </div>
         </div>
 
-        <div class="filters__group">
-            <h2 class="filters__title">Filtrer par scène</h2>
-            <div class="filters__buttons">
-                <button class="filter-btn filter-scene active" data-scene="all">
+        <div class="mb-8">
+            <h2 class="mb-4 text-3xl md:text-4xl">Filtrer par scène</h2>
+            <div class="flex flex-wrap gap-3">
+                <button
+                    class="filter-btn filter-scene active border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
+                    data-scene="all"
+                >
                     Toutes les scènes
                 </button>
 
                 {
                     uniqueScenes.map((scene) => (
                         <button
-                            class="filter-btn filter-scene"
+                            class="filter-btn filter-scene border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
                             data-scene={scene}
                         >
                             {scene}
@@ -96,32 +113,43 @@ const uniqueScenes = [
                 }
             </div>
         </div>
-    </section>
 
-    <section class="programme-days-links">
-        <h2 class="filters__title">Accès direct par jour</h2>
-        <div class="filters__buttons">
-            {
-                uniqueDates.map((date) => (
-                    <a href={`/programme/${date}`} class="filter-btn">
-                        {formatDateLabel(date)}
-                    </a>
-                ))
-            }
+        <div class="mb-8">
+            <h2 class="mb-4 text-3xl md:text-4xl">Filtrer par genre</h2>
+            <div class="flex flex-wrap gap-3">
+                <button
+                    class="filter-btn filter-genre active border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
+                    data-genre="all"
+                >
+                    Tous les genres
+                </button>
+
+                {
+                    uniqueGenres.map((genre) => (
+                        <button
+                            class="filter-btn filter-genre border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
+                            data-genre={genre}
+                        >
+                            {genre}
+                        </button>
+                    ))
+                }
+            </div>
         </div>
     </section>
 
-    <section class="programme-list">
+    <section class="pb-16">
         {
             representations.length > 0 ? (
-                <div class="programme-list__items">
+                <div class="mx-auto grid max-w-6xl gap-6 px-6 md:grid-cols-2 lg:grid-cols-3">
                     {representations.map((rep) => (
                         <article
-                            class="programme-item event-section"
+                            class="programme-item event-section border border-[var(--light-v)] bg-white/5 p-5"
                             data-date={getJourKey(rep.date_representation)}
                             data-scene={rep.expand?.scene?.nom}
+                            data-genre={rep.expand?.artiste?.genre_musical}
                         >
-                            <p class="programme-item__date">
+                            <p class="mb-3 text-sm md:text-base">
                                 <strong>
                                     {formatDateLabel(rep.date_representation)}
                                 </strong>
@@ -130,7 +158,7 @@ const uniqueScenes = [
                                     : ""}
                             </p>
 
-                            <h2 class="programme-item__title">
+                            <h2 class="mb-3 text-4xl leading-none md:text-5xl">
                                 <a
                                     href={`/artistes/${rep.expand?.artiste?.id}`}
                                 >
@@ -138,12 +166,12 @@ const uniqueScenes = [
                                 </a>
                             </h2>
 
-                            <p class="programme-item__meta">
+                            <p class="mb-2">
                                 {rep.expand?.scene?.nom ??
                                     "Scène non renseignée"}
                             </p>
 
-                            <p class="programme-item__genre">
+                            <p class="text-sm md:text-base">
                                 {rep.expand?.artiste?.genre_musical ??
                                     "Genre non renseigné"}
                             </p>
@@ -151,7 +179,7 @@ const uniqueScenes = [
                     ))}
                 </div>
             ) : (
-                <p class="programme-list__empty">
+                <p class="px-6 text-center">
                     Aucune représentation n’est disponible pour le moment.
                 </p>
             )

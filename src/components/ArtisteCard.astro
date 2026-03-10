@@ -11,27 +11,31 @@ const heure = representation?.heure_representation;
 const scene = representation?.expand?.scene?.nom;
 ---
 
-<article class="artiste-card">
-    <a href={`/artistes/${artiste.id}`} class="artiste-card__link">
+<article
+    class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
+>
+    <a href={`/artistes/${artiste.id}`} class="block h-full">
         {
             photo ? (
                 <img
                     src={getImageUrl(artiste, photo)}
                     alt={`Photo de ${nom}`}
-                    class="artiste-card__img"
+                    class="aspect-[4/5] w-full object-cover"
                 />
             ) : (
-                <div class="artiste-card__placeholder">Aucune image</div>
+                <div class="flex aspect-[4/5] w-full items-center justify-center bg-white/5 text-center">
+                    Aucune image
+                </div>
             )
         }
 
-        <div class="artiste-card__content">
-            <h2 class="artiste-card__title">{nom}</h2>
-            <p class="artiste-card__genre">{genre}</p>
+        <div class="space-y-2 p-4">
+            <h2 class="text-4xl leading-none md:text-5xl">{nom}</h2>
+            <p class="text-lg">{genre}</p>
 
             {
                 date && (
-                    <p class="artiste-card__meta">
+                    <p class="text-sm md:text-base">
                         {date?.slice(0, 10).split("-").reverse().join("/")}
                         {heure ? ` • ${heure}` : ""}
                         {scene ? ` • ${scene}` : ""}

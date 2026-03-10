@@ -17,25 +17,7 @@ const { title = "Chorus Symphonia" } = Astro.props;
 		/>
 		<title>{title}</title>
 
-		<link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
-		<link
-			rel="icon"
-			type="image/png"
-			sizes="96x96"
-			href="/assets/icons/favicon-96x96.png"
-		/>
-		<link
-			rel="icon"
-			type="image/svg+xml"
-			href="/assets/icons/favicon.svg"
-		/>
-		<link
-			rel="apple-touch-icon"
-			sizes="180x180"
-			href="/assets/icons/apple-touch-icon.png"
-		/>
-		<meta name="apple-mobile-web-app-title" content="Chorus Symphonia" />
-		<link rel="manifest" href="/assets/icons/site.webmanifest" />
+		<link rel="icon" type="image/x-icon" href="/icons/favicon.ico" />
 
 		<link
 			href="https://fonts.googleapis.com/css2?family=Mohave:wght@300;400;700&display=swap"
@@ -43,7 +25,7 @@ const { title = "Chorus Symphonia" } = Astro.props;
 		/>
 	</head>
 
-	<body>
+	<body class="min-h-screen bg-[var(--dark)] text-[var(--light-v)]">
 		<Header />
 
 		<main>

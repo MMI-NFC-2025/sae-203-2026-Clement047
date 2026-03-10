@@ -7,23 +7,23 @@ const scenes = await getScenesByName();
 ---
 
 <Layout title="Scènes - Chorus Symphonia">
-    <section class="page-hero page-hero--small">
-        <h1 class="page-hero__title">Scènes</h1>
-        <p class="page-hero__intro">
+    <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
+        <h1 class="mb-4 text-6xl md:text-7xl">Scènes</h1>
+        <p class="mx-auto max-w-2xl text-lg md:text-xl">
             Découvrez les différents espaces du festival Chorus Symphonia.
         </p>
     </section>
 
-    <section class="scenes-list">
+    <section class="pb-16">
         {
             scenes.length > 0 ? (
-                <div class="scenes-grid">
+                <div class="mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-2 lg:grid-cols-3">
                     {scenes.map((scene) => (
                         <SceneCard scene={scene} />
                     ))}
                 </div>
             ) : (
-                <p class="scenes-list__empty">
+                <p class="px-6 text-center">
                     Aucune scène n’est disponible pour le moment.
                 </p>
             )

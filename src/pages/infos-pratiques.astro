@@ -3,44 +3,46 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Infos pratiques - Chorus Symphonia">
-    <section class="page-hero page-hero--small">
-        <h1 class="page-hero__title">Infos pratiques</h1>
-        <p class="page-hero__intro">
+    <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
+        <h1 class="mb-4 text-5xl md:text-7xl">Infos pratiques</h1>
+        <p class="mx-auto max-w-2xl text-lg md:text-xl">
             Toutes les informations utiles pour préparer votre venue au festival
             Chorus Symphonia.
         </p>
     </section>
 
-    <section class="infos-page">
-        <div class="infos-page__content">
-            <section class="infos-block">
-                <h2 class="infos-block__title">Accès</h2>
-                <p class="infos-block__text">
+    <section
+        class="mx-auto grid max-w-6xl gap-8 px-6 pb-16 md:grid-cols-[1.4fr_1fr]"
+    >
+        <div class="space-y-4">
+            <section class="border border-[var(--light-v)] bg-white/5 p-5">
+                <h2 class="mb-4 text-4xl md:text-5xl">Accès</h2>
+                <p>
                     Le festival se déroule à la Citadelle de Besançon, 99 Rue
                     des Fusillés de la Résistance, 25000 Besançon.
                 </p>
             </section>
 
-            <section class="infos-block">
-                <h2 class="infos-block__title">Horaires</h2>
-                <p class="infos-block__text">
+            <section class="border border-[var(--light-v)] bg-white/5 p-5">
+                <h2 class="mb-4 text-4xl md:text-5xl">Horaires</h2>
+                <p>
                     Les représentations ont lieu du 28 au 31 août 2026 selon la
                     programmation. L’ouverture des accès se fait 30 minutes
                     avant le début de chaque représentation.
                 </p>
             </section>
 
-            <section class="infos-block">
-                <h2 class="infos-block__title">Billetterie</h2>
-                <p class="infos-block__text">
+            <section class="border border-[var(--light-v)] bg-white/5 p-5">
+                <h2 class="mb-4 text-4xl md:text-5xl">Billetterie</h2>
+                <p>
                     La billetterie du festival est accessible en ligne. Les
                     réservations sont conseillées pour les concerts du soir.
                 </p>
             </section>
 
-            <section class="infos-block">
-                <h2 class="infos-block__title">Transport</h2>
-                <p class="infos-block__text">
+            <section class="border border-[var(--light-v)] bg-white/5 p-5">
+                <h2 class="mb-4 text-4xl md:text-5xl">Transport</h2>
+                <p>
                     L’accès est possible en voiture, en transports en commun et
                     à pied depuis le centre-ville. Pensez à anticiper votre
                     trajet les jours de grande affluence.
@@ -48,45 +50,45 @@ import Layout from "../layouts/Layout.astro";
             </section>
         </div>
 
-        <section class="faq-block">
-            <h2 class="faq-block__title">FAQ</h2>
+        <section>
+            <h2 class="mb-6 text-4xl md:text-5xl">FAQ</h2>
 
-            <details class="faq-item">
-                <summary class="faq-item__question">
+            <details class="mb-4 border border-[var(--light-v)] bg-white/5">
+                <summary class="cursor-pointer p-4 font-bold">
                     Faut-il réserver à l’avance ?
                 </summary>
-                <p class="faq-item__answer">
+                <p class="px-4 pb-4">
                     Oui, il est recommandé de réserver à l’avance pour les
                     concerts les plus demandés.
                 </p>
             </details>
 
-            <details class="faq-item">
-                <summary class="faq-item__question">
+            <details class="mb-4 border border-[var(--light-v)] bg-white/5">
+                <summary class="cursor-pointer p-4 font-bold">
                     Les lieux sont-ils accessibles ?
                 </summary>
-                <p class="faq-item__answer">
+                <p class="px-4 pb-4">
                     Une partie des espaces est accessible aux personnes à
                     mobilité réduite. Il est conseillé de consulter les
                     informations détaillées ou de contacter l’organisation.
                 </p>
             </details>
 
-            <details class="faq-item">
-                <summary class="faq-item__question">
+            <details class="mb-4 border border-[var(--light-v)] bg-white/5">
+                <summary class="cursor-pointer p-4 font-bold">
                     Peut-on venir en famille ?
                 </summary>
-                <p class="faq-item__answer">
+                <p class="px-4 pb-4">
                     Oui, certaines représentations et animations sont adaptées à
                     un public familial.
                 </p>
             </details>
 
-            <details class="faq-item">
-                <summary class="faq-item__question">
+            <details class="mb-4 border border-[var(--light-v)] bg-white/5">
+                <summary class="cursor-pointer p-4 font-bold">
                     Y a-t-il un parking à proximité ?
                 </summary>
-                <p class="faq-item__answer">
+                <p class="px-4 pb-4">
                     Oui, plusieurs zones de stationnement sont disponibles
                     autour de la Citadelle selon l’affluence.
                 </p>

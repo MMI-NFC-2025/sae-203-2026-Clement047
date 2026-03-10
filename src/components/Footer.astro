@@ -1,56 +1,57 @@
-<footer class="border-t border-white/20 bg-[var(--v-dark)]">
-    <div class="mx-auto max-w-6xl px-6 py-10">
-        <!-- Navigation -->
-        <nav
-            class="mb-8 flex flex-col items-center gap-4 md:flex-row md:justify-center md:gap-8"
-        >
-            <a href="/programme" class="transition hover:text-[var(--yellow)]">
+<footer class="bg-[var(--dark)] text-[var(--light-v)]">
+    <div class="mx-auto w-full max-w-[430px] px-0 md:max-w-[520px]">
+        <nav aria-label="Navigation du pied de page" class="border-t border-white/20">
+            <a
+                href="/programme"
+                class="flex min-h-[52px] items-center justify-center border-b border-white/20 px-4 text-center text-[20px] leading-none transition hover:text-[var(--yellow)] md:min-h-[58px] md:text-[22px]"
+            >
                 Programme
             </a>
 
             <a
                 href="/infos-pratiques"
-                class="transition hover:text-[var(--yellow)]"
+                class="flex min-h-[52px] items-center justify-center border-b border-white/20 px-4 text-center text-[20px] leading-none transition hover:text-[var(--yellow)] md:min-h-[58px] md:text-[22px]"
             >
                 Informations pratiques
             </a>
 
-            <a href="/a-propos" class="transition hover:text-[var(--yellow)]">
+            <a
+                href="/a-propos"
+                class="flex min-h-[52px] items-center justify-center border-b border-white/20 px-4 text-center text-[20px] leading-none transition hover:text-[var(--yellow)] md:min-h-[58px] md:text-[22px]"
+            >
                 À propos
             </a>
 
-            <a href="/contact" class="transition hover:text-[var(--yellow)]">
+            <a
+                href="/contact"
+                class="flex min-h-[52px] items-center justify-center border-b border-white/20 px-4 text-center text-[20px] leading-none transition hover:text-[var(--yellow)] md:min-h-[58px] md:text-[22px]"
+            >
                 Contact
             </a>
         </nav>
 
-        <!-- Réseaux -->
-        <div class="mb-8 flex justify-center gap-6 text-sm">
-            <a href="#" class="transition hover:text-[var(--yellow)]">
-                Instagram
-            </a>
+        <div class="px-6 pb-8 pt-10 md:px-8 md:pb-10 md:pt-12">
+            <div class="flex items-center justify-center gap-6 text-[18px] leading-none text-[var(--yellow)] md:gap-10 md:text-[22px]">
+                <a href="#" class="transition hover:opacity-80">Instagram</a>
+                <a href="#" class="transition hover:opacity-80">Facebook</a>
+                <a href="#" class="transition hover:opacity-80">Podcasts</a>
+            </div>
 
-            <a href="#" class="transition hover:text-[var(--yellow)]">
-                Facebook
-            </a>
+            <div class="mt-10 flex justify-center md:mt-12">
+                <img
+                    src="/icons/logofestival.svg"
+                    alt="Logo Chorus Symphonia"
+                    class="h-auto w-[170px] opacity-95 md:w-[210px]"
+                />
+            </div>
 
-            <a href="#" class="transition hover:text-[var(--yellow)]">
-                Podcasts
-            </a>
+            <div class="mt-8 text-center text-[11px] leading-[1.45] text-[var(--light-v)]/65 md:mt-10 md:text-[12px]">
+                <p>Ludi Durant</p>
+                <p class="mt-2">
+                    Projet réalisé en 2026 dans le cadre d'un exercice pédagogique au département
+                    MMI de Montbéliard.
+                </p>
+            </div>
         </div>
-
-        <!-- Logo -->
-        <div class="flex justify-center">
-            <img
-                src="/icons/logofestival.svg"
-                alt="Logo Chorus Symphonia"
-                class="h-10 w-auto opacity-80"
-            />
-        </div>
-
-        <!-- Copyright -->
-        <p class="mt-6 text-center text-sm opacity-70">
-            © 2026 Chorus Symphonia — Festival de musique classique
-        </p>
     </div>
 </footer>

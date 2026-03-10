@@ -8,26 +8,30 @@ const links = [
     { href: "/infos-pratiques", label: "Informations pratiques" },
     { href: "/a-propos", label: "À propos" },
     { href: "/contact", label: "Contact" },
+    { href: "/connexion", label: "Connexion" },
+    { href: "/compte", label: "Compte" },
 ];
 
-const isActive = (href) => {
+const isActive = (href: string) => {
     if (href === "/") return currentPath === "/";
     return currentPath.startsWith(href);
 };
 ---
 
-<header class="absolute inset-x-0 top-0 z-50 w-full">
-    <div class="mx-auto max-w-6xl px-5 pt-4 md:px-6 md:pt-5">
-        <div class="flex items-start justify-between">
+<header class="fixed inset-x-0 top-0 z-50 w-full">
+    <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--v-dark)]/92 via-[var(--v-dark)]/55 to-transparent md:h-36"></div>
+
+    <div class="relative mx-auto max-w-6xl px-4 pt-4 md:px-6 md:pt-5">
+        <div class="flex items-center justify-between gap-4">
             <a
                 href="/"
-                class="shrink-0 transition-opacity duration-300 hover:opacity-80"
+                class="flex shrink-0 items-center transition-opacity duration-300 hover:opacity-80"
                 aria-label="Retour à l’accueil de Chorus Symphonia"
             >
                 <img
                     src="/icons/logofestival.svg"
                     alt="Chorus Symphonia"
-                    class="h-auto w-[110px] md:w-[125px]"
+                    class="h-auto w-[96px] sm:w-[108px] md:w-[125px]"
                 />
             </a>
 
@@ -56,20 +60,20 @@ const isActive = (href) => {
 
             <button
                 id="menuBtn"
-                class="relative flex h-6 w-[47px] items-center justify-center lg:hidden"
+                class="relative flex h-9 w-9 shrink-0 items-center justify-center self-center lg:hidden"
                 aria-label="Ouvrir le menu"
                 aria-expanded="false"
                 aria-controls="mobileMenu"
                 type="button"
             >
                 <span
-                    class="menu-line menu-line-top absolute h-[2px] w-[47px] bg-[var(--light-v)] transition-all duration-300"
+                    class="menu-line menu-line-top absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300"
                 ></span>
                 <span
-                    class="menu-line menu-line-middle absolute h-[2px] w-[47px] bg-[var(--light-v)] transition-all duration-300"
+                    class="menu-line menu-line-middle absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300"
                 ></span>
                 <span
-                    class="menu-line menu-line-bottom absolute h-[2px] w-[47px] bg-[var(--light-v)] transition-all duration-300"
+                    class="menu-line menu-line-bottom absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300"
                 ></span>
             </button>
         </div>
@@ -84,23 +88,23 @@ const isActive = (href) => {
     <div class="absolute inset-0 bg-[var(--dark)]/92 backdrop-blur-md"></div>
 
     <div class="relative flex h-full flex-col bg-[var(--dark)]/96">
-        <div class="flex items-start justify-between px-6 pt-5">
+        <div class="flex items-center justify-between px-5 pt-4">
             <img
                 src="/icons/logofestival.svg"
                 alt="Chorus Symphonia"
-                class="h-auto w-[110px]"
+                class="h-auto w-[96px] sm:w-[108px]"
             />
 
             <button
                 id="menuClose"
-                class="relative flex h-10 w-10 items-center justify-center"
+                class="relative flex h-9 w-9 items-center justify-center"
                 aria-label="Fermer le menu"
                 type="button"
             >
-                <span class="absolute h-[2px] w-8 rotate-45 bg-[var(--light-v)]"
+                <span class="absolute h-[2px] w-7 rotate-45 bg-[var(--light-v)]"
                 ></span>
                 <span
-                    class="absolute h-[2px] w-8 -rotate-45 bg-[var(--light-v)]"
+                    class="absolute h-[2px] w-7 -rotate-45 bg-[var(--light-v)]"
                 ></span>
             </button>
         </div>

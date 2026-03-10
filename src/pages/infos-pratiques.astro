@@ -4,85 +4,129 @@ import Layout from "../layouts/Layout.astro";
 
 <Layout title="Infos pratiques - Chorus Symphonia" fullScreen={true}>
     <section class="relative isolate">
-        <div class="relative h-[360px] md:h-[620px]">
+        <div class="relative h-[42svh] min-h-[300px] md:h-[620px]">
             <img
                 src="/img/Informations/imageheroinfos.avif"
                 alt="Vue nocturne de la Citadelle de Besançon"
                 class="absolute inset-0 h-full w-full object-cover"
             />
-            <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:h-40"></div>
+            <div
+                class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:h-40"
+            >
+            </div>
         </div>
     </section>
 
-    <section class="relative z-20 mx-auto max-w-[390px] -mt-[64px] overflow-visible px-6 pb-10 pt-0 md:max-w-6xl md:-mt-[82px] md:px-10 md:pb-14">
-        <h1 class="text-[62px] font-normal leading-[0.9] text-[var(--light-v)] md:text-[84px]">
+    <section
+        class="relative z-20 mx-auto w-full max-w-6xl -mt-[64px] overflow-visible px-5 pb-10 pt-0 sm:px-6 md:-mt-[82px] md:px-10 md:pb-14"
+    >
+        <h1
+            class="text-[clamp(3.2rem,15vw,5.25rem)] font-normal leading-[0.9] text-[var(--light-v)]"
+        >
             Informations
         </h1>
 
-        <h2 class="max-w-[360px] pt-20 text-[34px] font-normal leading-[1.02] text-[var(--vi)] md:max-w-[760px] md:pt-28 md:text-[60px] md:leading-[64px]">
+        <h2
+            class="max-w-[22rem] pt-16 text-[clamp(2rem,10vw,3.75rem)] font-normal leading-[1.02] text-[var(--vi)] sm:max-w-[34rem] md:max-w-[760px] md:pt-28 md:leading-[64px]"
+        >
             Préparez votre venue :
             <br />
             toutes les infos essentielles
         </h2>
     </section>
 
-    <section class="mx-auto max-w-[390px] px-6 pb-10 md:max-w-6xl md:px-10 md:pb-14">
+    <section
+        class="mx-auto w-full max-w-6xl px-5 pb-10 sm:px-6 md:px-10 md:pb-14"
+    >
         <div class="relative md:max-w-[860px]">
-            <p class="max-w-[360px] text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:max-w-[760px] md:text-[28px] md:leading-[1.5]">
-                Afin de vous garantir une expérience sereine et inoubliable au coeur de la Citadelle de Besançon, voici toutes les informations pratiques pour planifier votre séjour et votre venue au festival Chorus Symphonia.
+            <p
+                class="max-w-[44rem] text-[18px] leading-[1.55] text-[var(--light-v)]/92 sm:text-[19px] md:max-w-[760px] md:text-[28px] md:leading-[1.5]"
+            >
+                Afin de vous garantir une expérience sereine et inoubliable au
+                coeur de la Citadelle de Besançon, voici toutes les informations
+                pratiques pour planifier votre séjour et votre venue au festival
+                Chorus Symphonia.
             </p>
 
             <img
                 src="/icons/etoile3.svg"
                 alt=""
                 aria-hidden="true"
-                class="absolute bottom-[-10px] right-2 h-[86px] w-10 md:bottom-0 md:right-10 md:h-[112px] md:w-14"
+                class="absolute bottom-[-10px] right-2 hidden h-[86px] w-10 sm:block md:bottom-0 md:right-10 md:h-[112px] md:w-14"
             />
         </div>
     </section>
 
-    <section class="mx-auto max-w-[390px] px-6 pb-14 md:max-w-6xl md:px-10 md:pb-18">
+    <section
+        class="mx-auto w-full max-w-6xl px-5 pb-14 sm:px-6 md:px-10 md:pb-18"
+    >
         <div class="relative md:max-w-[860px]">
-            <h2 class="text-[27px] font-normal leading-none text-[var(--vi)] md:text-[42px]">
+            <h2
+                class="text-[27px] font-normal leading-none text-[var(--vi)] md:text-[42px]"
+            >
                 Tarifs
             </h2>
 
-            <p class="mt-8 max-w-[360px] text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:max-w-[760px] md:text-[28px] md:leading-[1.5]">
-                Chorus Symphonia s'engage pour l'accessibilité de la musique classique.
+            <p
+                class="mt-8 max-w-[44rem] text-[18px] leading-[1.55] text-[var(--light-v)]/92 sm:text-[19px] md:max-w-[760px] md:text-[28px] md:leading-[1.5]"
+            >
+                Chorus Symphonia s'engage pour l'accessibilité de la musique
+                classique.
                 <br />
-                Notre politique tarifaire est conçue pour être inclusive, avec une attention particulière portée aux publics fragiles et aux familles.
+                Notre politique tarifaire est conçue pour être inclusive, avec une
+                attention particulière portée aux publics fragiles et aux familles.
             </p>
         </div>
 
-        <div class="mt-10 max-w-[360px] space-y-7 text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:mt-12 md:max-w-[860px] md:space-y-8 md:text-[27px] md:leading-[1.5]">
+        <div
+            class="mt-10 max-w-[54rem] space-y-7 text-[18px] leading-[1.55] text-[var(--light-v)]/92 sm:text-[19px] md:mt-12 md:space-y-8 md:text-[27px] md:leading-[1.5]"
+        >
             <div>
-                <p><strong>Plein Tarif :</strong> Accès à une soirée de concert sur la Scène Principale.</p>
+                <p>
+                    <strong>Plein Tarif :</strong> Accès à une soirée de concert sur
+                    la Scène Principale.
+                </p>
                 <p>À partir de 45 €</p>
             </div>
 
             <div>
-                <p><strong>Tarif Réduit :</strong> Étudiants, demandeurs d'emploi, moins de ans.</p>
+                <p>
+                    <strong>Tarif Réduit :</strong> Étudiants, demandeurs d'emploi,
+                    moins de ans.
+                </p>
                 <p>À partir de 30 €</p>
             </div>
 
             <div>
-                <p><strong>Tarif Solidaire :</strong> Réservé aux publics bénéficiant de minima sociaux.</p>
+                <p>
+                    <strong>Tarif Solidaire :</strong> Réservé aux publics bénéficiant
+                    de minima sociaux.
+                </p>
                 <p>À partir de 15 €</p>
             </div>
 
             <div>
-                <p><strong>Pass 4 Jours :</strong> Accès à toutes les soirées de la Scène Principale.</p>
+                <p>
+                    <strong>Pass 4 Jours :</strong> Accès à toutes les soirées de
+                    la Scène Principale.
+                </p>
                 <p>À partir de 150 €</p>
             </div>
 
             <div>
-                <p><strong>Activités Participatives :</strong> Ateliers, chorales, théâtre citoyen.</p>
+                <p>
+                    <strong>Activités Participatives :</strong> Ateliers, chorales,
+                    théâtre citoyen.
+                </p>
                 <p>Gratuit, sur inscription</p>
             </div>
         </div>
 
         <div class="mt-12 flex justify-center md:mt-14 md:justify-start">
-            <a href="#" class="inline-block transition duration-200 hover:opacity-90">
+            <a
+                href="#"
+                class="inline-block transition duration-200 hover:opacity-90"
+            >
                 <img
                     src="/icons/cta.svg"
                     alt="Je prends mon billet !"
@@ -92,9 +136,13 @@ import Layout from "../layouts/Layout.astro";
         </div>
     </section>
 
-    <section class="mx-auto max-w-[390px] px-6 pb-16 md:max-w-6xl md:px-10 md:pb-20">
+    <section
+        class="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-6 md:px-10 md:pb-20"
+    >
         <section class="md:max-w-[860px]">
-            <h2 class="mb-6 text-[27px] font-normal leading-none text-[var(--light-v)] md:text-[42px]">
+            <h2
+                class="mb-6 text-[27px] font-normal leading-none text-[var(--light-v)] md:text-[42px]"
+            >
                 FAQ
             </h2>
 
@@ -103,7 +151,8 @@ import Layout from "../layouts/Layout.astro";
                     Faut-il réserver à l’avance ?
                 </summary>
                 <p class="px-4 pb-4">
-                    Oui, il est recommandé de réserver à l’avance pour les concerts les plus demandés.
+                    Oui, il est recommandé de réserver à l’avance pour les
+                    concerts les plus demandés.
                 </p>
             </details>
 
@@ -112,7 +161,9 @@ import Layout from "../layouts/Layout.astro";
                     Les lieux sont-ils accessibles ?
                 </summary>
                 <p class="px-4 pb-4">
-                    Une partie des espaces est accessible aux personnes à mobilité réduite. Il est conseillé de consulter les informations détaillées ou de contacter l’organisation.
+                    Une partie des espaces est accessible aux personnes à
+                    mobilité réduite. Il est conseillé de consulter les
+                    informations détaillées ou de contacter l’organisation.
                 </p>
             </details>
 
@@ -121,7 +172,8 @@ import Layout from "../layouts/Layout.astro";
                     Peut-on venir en famille ?
                 </summary>
                 <p class="px-4 pb-4">
-                    Oui, certaines représentations et animations sont adaptées à un public familial.
+                    Oui, certaines représentations et animations sont adaptées à
+                    un public familial.
                 </p>
             </details>
 
@@ -130,7 +182,8 @@ import Layout from "../layouts/Layout.astro";
                     Y a-t-il un parking à proximité ?
                 </summary>
                 <p class="px-4 pb-4">
-                    Oui, plusieurs zones de stationnement sont disponibles autour de la Citadelle selon l’affluence.
+                    Oui, plusieurs zones de stationnement sont disponibles
+                    autour de la Citadelle selon l’affluence.
                 </p>
             </details>
         </section>

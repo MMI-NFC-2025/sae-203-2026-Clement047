@@ -1,0 +1,131 @@
+---
+type CarouselImage = string | { src: string; alt?: string };
+
+const {
+    images = [],
+    aspectClass = "aspect-[16/10]",
+    altPrefix = "Image",
+} = Astro.props as {
+    images?: CarouselImage[];
+    aspectClass?: string;
+    altPrefix?: string;
+};
+---
+
+{
+    images.length > 0 && (
+        <div class="group relative" data-carousel>
+            <div
+                class:list={[
+                    "relative overflow-hidden border border-[var(--light-v)] bg-white/5",
+                    aspectClass,
+                ]}
+            >
+                {images.map((image, index) => (
+                    <img
+                        src={typeof image === "string" ? image : image.src}
+                        alt={
+                            typeof image === "string"
+                                ? `${altPrefix} ${index + 1}`
+                                : (image.alt ?? `${altPrefix} ${index + 1}`)
+                        }
+                        class:list={[
+                            "absolute inset-0 h-full w-full object-cover transition duration-500",
+                            index === 0
+                                ? "opacity-100"
+                                : "pointer-events-none opacity-0",
+                        ]}
+                        data-carousel-slide
+                    />
+                ))}
+            </div>
+
+            {
+                images.length > 1 && (
+                    <>
+                        <button
+                            type="button"
+                            class="absolute left-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[var(--light-v)] bg-[var(--v-dark)]/80 text-[var(--light-v)] transition hover:border-[var(--vi)] hover:text-white"
+                            aria-label="Image précédente"
+                            data-carousel-prev
+                        >
+                            &lt;
+                        </button>
+
+                        <button
+                            type="button"
+                            class="absolute right-3 top-1/2 z-10 flex h-11 w-11 -translate-y-1/2 items-center justify-center border border-[var(--light-v)] bg-[var(--v-dark)]/80 text-[var(--light-v)] transition hover:border-[var(--vi)] hover:text-white"
+                            aria-label="Image suivante"
+                            data-carousel-next
+                        >
+                            &gt;
+                        </button>
+
+                        <div class="absolute bottom-4 left-1/2 z-10 flex -translate-x-1/2 gap-2">
+                            {images.map((_, index) => (
+                                <button
+                                    type="button"
+                                    class:list={[
+                                        "h-2.5 w-2.5 rounded-full border border-[var(--light-v)] transition",
+                                        index === 0
+                                            ? "bg-[var(--light-v)]"
+                                            : "bg-transparent",
+                                    ]}
+                                    aria-label={`Aller à l'image ${index + 1}`}
+                                    data-carousel-dot
+                                ></button>
+                            ))}
+                        </div>
+                    </>
+                )
+            }
+        </div>
+    )
+}
+
+<script>
+    const carousels = document.querySelectorAll("[data-carousel]");
+
+    carousels.forEach((carousel) => {
+        const slides = Array.from(
+            carousel.querySelectorAll("[data-carousel-slide]"),
+        );
+        const dots = Array.from(carousel.querySelectorAll("[data-carousel-dot]"));
+        const prevButton = carousel.querySelector("[data-carousel-prev]");
+        const nextButton = carousel.querySelector("[data-carousel-next]");
+
+        if (slides.length <= 1) return;
+
+        let activeIndex = 0;
+
+        const render = () => {
+            slides.forEach((slide, index) => {
+                slide.classList.toggle("opacity-100", index === activeIndex);
+                slide.classList.toggle("opacity-0", index !== activeIndex);
+                slide.classList.toggle("pointer-events-none", index !== activeIndex);
+            });
+
+            dots.forEach((dot, index) => {
+                dot.classList.toggle("bg-[var(--light-v)]", index === activeIndex);
+                dot.classList.toggle("bg-transparent", index !== activeIndex);
+            });
+        };
+
+        prevButton?.addEventListener("click", () => {
+            activeIndex = (activeIndex - 1 + slides.length) % slides.length;
+            render();
+        });
+
+        nextButton?.addEventListener("click", () => {
+            activeIndex = (activeIndex + 1) % slides.length;
+            render();
+        });
+
+        dots.forEach((dot, index) => {
+            dot.addEventListener("click", () => {
+                activeIndex = index;
+                render();
+            });
+        });
+    });
+</script>

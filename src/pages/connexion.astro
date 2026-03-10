@@ -1,0 +1,108 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Connexion - Chorus Symphonia" fullScreen={true}>
+    <section class="relative isolate">
+        <div class="relative h-[250px] sm:h-[320px] md:h-[460px]">
+            <img
+                src="/img/Contact/imageherocontact.avif"
+                alt="Ciel étoilé en arrière-plan"
+                class="absolute inset-0 h-full w-full object-cover"
+            />
+            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:h-36"></div>
+        </div>
+    </section>
+
+    <section class="relative z-20 mx-auto w-full max-w-[1200px] px-5 pb-10 pt-0 sm:px-6 md:px-10 md:pb-14">
+        <h1 class="-mt-10 text-[54px] leading-[0.9] text-[var(--light-v)] sm:-mt-12 sm:text-[68px] md:-mt-16 md:text-[88px]">
+            Connexion
+        </h1>
+    </section>
+
+    <section class="mx-auto w-full max-w-[1200px] px-5 pb-16 sm:px-6 md:px-10 md:pb-24">
+        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.75fr)] lg:gap-16">
+            <div>
+                <p class="max-w-[48rem] text-[20px] leading-[1.45] text-[var(--light-v)]/92 sm:text-[24px] md:text-[32px]">
+                    Connectez-vous avec l’adresse email du visiteur enregistrée dans la collection
+                    <span class="text-[var(--vi)]"> users</span>
+                    pour accéder à votre compte et modifier vos données depuis le front.
+                </p>
+            </div>
+
+            <div class="border border-[var(--light-v)] bg-white/5 p-5 sm:p-6 md:p-8">
+                <form id="loginForm" class="flex flex-col gap-4 md:gap-5">
+                    <label class="sr-only" for="email">Adresse email</label>
+                    <input
+                        id="email"
+                        name="email"
+                        type="email"
+                        autocomplete="email"
+                        placeholder="Adresse email"
+                        required
+                        class="w-full border border-transparent bg-[rgba(217,198,226,0.18)] px-4 py-3 text-[18px] text-[var(--light-v)] outline-none transition placeholder:text-[var(--light-v)]/72 focus:border-[var(--vi)] sm:text-[20px]"
+                    />
+
+                    <label class="sr-only" for="password">Mot de passe</label>
+                    <input
+                        id="password"
+                        name="password"
+                        type="password"
+                        autocomplete="current-password"
+                        placeholder="Mot de passe"
+                        required
+                        class="w-full border border-transparent bg-[rgba(217,198,226,0.18)] px-4 py-3 text-[18px] text-[var(--light-v)] outline-none transition placeholder:text-[var(--light-v)]/72 focus:border-[var(--vi)] sm:text-[20px]"
+                    />
+
+                    <button
+                        type="submit"
+                        class="mt-2 inline-flex min-h-[58px] items-center justify-center bg-[var(--yellow)] px-6 text-[18px] text-[var(--v-dark)] transition hover:opacity-90 sm:min-h-[64px] sm:text-[20px]"
+                    >
+                        Se connecter
+                    </button>
+
+                    <p id="loginFeedback" class="min-h-[1.5rem] text-[16px] text-[var(--light-v)]/82"></p>
+                </form>
+
+                <div class="mt-8 border-t border-white/12 pt-6 text-[16px] leading-[1.55] text-[var(--light-v)]/82 sm:text-[18px]">
+                    <p>Après connexion, vous serez redirigé vers votre espace compte.</p>
+                    <p class="mt-4">Vous pourrez y modifier automatiquement vos informations depuis l’interface front.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        import { getPocketBaseClient, isAuthenticated } from "../scripts/pocketbase-browser.js";
+
+        const form = document.getElementById("loginForm");
+        const feedback = document.getElementById("loginFeedback");
+
+        if (isAuthenticated()) {
+            window.location.href = "/compte";
+        }
+
+        form?.addEventListener("submit", async (event) => {
+            event.preventDefault();
+
+            const pb = getPocketBaseClient();
+            const formData = new FormData(form);
+            const email = String(formData.get("email") ?? "").trim();
+            const password = String(formData.get("password") ?? "");
+
+            if (feedback) {
+                feedback.textContent = "Connexion en cours...";
+            }
+
+            try {
+                await pb.collection("users").authWithPassword(email, password);
+                window.location.href = "/compte";
+            } catch (error) {
+                if (feedback) {
+                    feedback.textContent = "Connexion impossible. Vérifiez l’adresse email et le mot de passe.";
+                }
+                console.error(error);
+            }
+        });
+    </script>
+</Layout>

@@ -30,10 +30,12 @@ body {
     background-color: var(--v-dark);
     color: var(--light-v);
     line-height: 1.4;
+    overflow-x: hidden;
 }
 
 main {
     min-height: 100vh;
+    overflow-x: hidden;
 }
 
 a {

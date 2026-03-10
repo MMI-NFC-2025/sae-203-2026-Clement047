@@ -61,47 +61,68 @@ const uniqueGenres = [
 
 <Layout title="Programme - Chorus Symphonia" fullScreen={true}>
     <section class="relative isolate">
-        <div class="relative h-[360px] md:h-[620px]">
+        <div class="relative h-[42svh] min-h-[300px] md:h-[620px]">
             <img
                 src="/img/Programme/imageheroprogramme.avif"
                 alt="Clavier de piano éclairé en bleu et violet"
                 class="absolute inset-0 h-full w-full object-cover"
             />
-            <div class="absolute inset-x-0 bottom-0 h-[118px] bg-[var(--v-dark)] md:h-[148px]"></div>
-            <div class="absolute inset-x-0 bottom-[118px] h-24 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:bottom-[148px] md:h-32"></div>
+            <div
+                class="absolute inset-x-0 bottom-0 h-[88px] bg-[var(--v-dark)] md:h-[148px]"
+            >
+            </div>
+            <div
+                class="absolute inset-x-0 bottom-[88px] h-20 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:bottom-[148px] md:h-32"
+            >
+            </div>
         </div>
     </section>
 
-    <section class="relative z-20 mx-auto max-w-[390px] -mt-[88px] px-6 pb-10 pt-0 md:max-w-6xl md:-mt-[110px] md:px-10 md:pb-14">
-        <h1 class="text-[62px] font-normal leading-[0.9] text-[var(--light-v)] md:text-[84px]">
+    <section
+        class="relative z-20 mx-auto w-full max-w-6xl -mt-[70px] px-5 pb-10 pt-0 sm:px-6 md:-mt-[110px] md:px-10 md:pb-14"
+    >
+        <h1
+            class="text-[clamp(3.2rem,15vw,5.25rem)] font-normal leading-[0.9] text-[var(--light-v)]"
+        >
             Programme
         </h1>
 
-        <h2 class="max-w-[390px] pt-24 text-[31px] font-normal leading-[1.02] text-[var(--vi)] md:max-w-[720px] md:pt-32 md:text-[64px] md:leading-[68px]">
+        <h2
+            class="max-w-[22rem] pt-16 text-[clamp(1.9rem,10vw,4rem)] font-normal leading-[1.02] text-[var(--vi)] sm:max-w-[34rem] md:max-w-[720px] md:pt-32 md:leading-[68px]"
+        >
             Quatre jours d'émotion à la
             <br />
             Citadelle
         </h2>
     </section>
 
-    <section class="mx-auto max-w-[390px] px-6 pb-10 md:max-w-6xl md:px-10 md:pb-14">
+    <section
+        class="mx-auto w-full max-w-6xl px-5 pb-10 sm:px-6 md:px-10 md:pb-14"
+    >
         <div class="relative md:max-w-[860px]">
-            <p class="max-w-[360px] text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:max-w-[760px] md:text-[28px] md:leading-[1.5]">
-                <span class="text-[var(--vi)]">Du jeudi 28 au dimanche 31 août</span>, la Citadelle de Besançon se transforme en un écrin vibrant pour la musique classique et lyrique. Notre programmation est conçue pour être une symphonie d'expériences, mêlant les grandes oeuvres du répertoire à des moments de partage et de découverte.
+            <p
+                class="max-w-[44rem] text-[18px] leading-[1.55] text-[var(--light-v)]/92 sm:text-[19px] md:max-w-[760px] md:text-[28px] md:leading-[1.5]"
+            >
+                <span class="text-[var(--vi)]"
+                    >Du jeudi 28 au dimanche 31 août</span
+                >, la Citadelle de Besançon se transforme en un écrin vibrant
+                pour la musique classique et lyrique. Notre programmation est
+                conçue pour être une symphonie d'expériences, mêlant les grandes
+                oeuvres du répertoire à des moments de partage et de découverte.
             </p>
 
             <img
                 src="/icons/etoile3.svg"
                 alt=""
                 aria-hidden="true"
-                class="absolute bottom-0 right-8 h-[86px] w-10 md:right-10 md:h-[112px] md:w-14"
+                class="absolute bottom-0 right-8 hidden h-[86px] w-10 sm:block md:right-10 md:h-[112px] md:w-14"
             />
         </div>
     </section>
 
-    <section class="mx-auto max-w-6xl px-6 pb-8">
+    <section class="mx-auto w-full max-w-6xl px-5 pb-8 sm:px-6 md:px-10">
         <div class="mb-8">
-            <h2 class="mb-4 text-3xl md:text-4xl">Filtrer par jour</h2>
+            <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Filtrer par jour</h2>
             <div class="flex flex-wrap gap-3">
                 <button
                     class="filter-btn filter-date active border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
@@ -124,7 +145,7 @@ const uniqueGenres = [
         </div>
 
         <div class="mb-8">
-            <h2 class="mb-4 text-3xl md:text-4xl">Filtrer par scène</h2>
+            <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Filtrer par scène</h2>
             <div class="flex flex-wrap gap-3">
                 <button
                     class="filter-btn filter-scene active border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
@@ -147,7 +168,7 @@ const uniqueGenres = [
         </div>
 
         <div class="mb-8">
-            <h2 class="mb-4 text-3xl md:text-4xl">Filtrer par genre</h2>
+            <h2 class="mb-4 text-2xl sm:text-3xl md:text-4xl">Filtrer par genre</h2>
             <div class="flex flex-wrap gap-3">
                 <button
                     class="filter-btn filter-genre active border border-[var(--light-v)] px-4 py-3 transition hover:bg-[var(--vi)]"
@@ -173,7 +194,7 @@ const uniqueGenres = [
     <section class="pb-16">
         {
             representations.length > 0 ? (
-                <div class="mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="mx-auto grid w-full max-w-6xl gap-6 px-5 sm:px-6 md:grid-cols-2 md:px-10 lg:grid-cols-3">
                     {representations.map((rep) => (
                         <article
                             class="programme-item event-section group relative overflow-hidden border border-[var(--light-v)]/90 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] px-6 py-6 transition duration-300 hover:-translate-y-1 hover:border-[var(--vi)] hover:shadow-[0_22px_50px_rgba(0,0,0,0.28)] md:px-7 md:py-7"
@@ -181,8 +202,8 @@ const uniqueGenres = [
                             data-scene={rep.expand?.scene?.nom}
                             data-genre={rep.expand?.artiste?.genre_musical}
                         >
-                            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(142,77,228,0.12),transparent_42%)] opacity-80"></div>
-                            <div class="relative flex min-h-[214px] flex-col">
+                            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(142,77,228,0.12),transparent_42%)] opacity-80" />
+                            <div class="relative flex min-h-[180px] flex-col sm:min-h-[214px]">
                                 <p class="mb-5 text-[15px] font-semibold leading-none text-[var(--light-v)] md:text-[17px]">
                                     {formatDateLabel(rep.date_representation)}
                                     {rep.heure_representation
@@ -190,7 +211,7 @@ const uniqueGenres = [
                                         : ""}
                                 </p>
 
-                                <h2 class="mb-5 text-[52px] leading-[0.9] tracking-[-0.02em] text-[var(--light-v)] md:text-[58px]">
+                                <h2 class="mb-5 text-[clamp(2.5rem,12vw,3.625rem)] leading-[0.9] tracking-[-0.02em] text-[var(--light-v)]">
                                     <a
                                         href={`/artistes/${rep.expand?.artiste?.id}`}
                                         class="transition group-hover:text-white"
@@ -222,7 +243,9 @@ const uniqueGenres = [
         }
     </section>
 
-    <section class="mx-auto flex max-w-[390px] flex-col items-center px-6 pb-12 pt-4 md:max-w-6xl md:pb-16 md:pt-6">
+    <section
+        class="mx-auto flex w-full max-w-6xl flex-col items-center px-5 pb-12 pt-4 sm:px-6 md:pb-16 md:pt-6 md:px-10"
+    >
         <div class="flex w-full flex-col items-center gap-8 md:gap-10">
             <a
                 href="#"
@@ -248,7 +271,9 @@ const uniqueGenres = [
         </div>
     </section>
 
-    <section class="mx-auto max-w-[390px] px-6 pb-20 md:max-w-6xl md:px-10 md:pb-24">
+    <section
+        class="mx-auto w-full max-w-6xl px-5 pb-20 sm:px-6 md:px-10 md:pb-24"
+    >
         <FloatingLabelCard
             href="/scenes"
             imageSrc="/img/Programme/vitrinescenesprogramme.avif"

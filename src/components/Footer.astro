@@ -1,106 +1,56 @@
----
-import Layout from "../layouts/Layout.astro";
----
-
-<Layout title="Accueil - Chorus Symphonia">
-    <section
-        id="hero"
-        class="flex min-h-screen flex-col items-center justify-end bg-[url('/img/Accueil/fondetoileacceuil.avif')] bg-cover bg-center bg-no-repeat px-6 pb-12 pt-32 text-center md:pb-16 md:pt-40"
-    >
-        <img
-            src="/icons/logofestival.svg"
-            alt="Logo Chorus Symphonia"
-            class="w-full max-w-xl"
-        />
-
-        <p class="mt-4 text-2xl md:text-3xl">28–31 août 2026</p>
-    </section>
-
-    <section class="mx-auto max-w-4xl px-6 py-12 text-center">
-        <h1 class="text-5xl md:text-7xl">
-            Festival de musique classique à la Citadelle de Besançon
-        </h1>
-    </section>
-
-    <section class="flex justify-center px-6 pb-12">
-        <a
-            href="#"
-            class="inline-block border border-[var(--light-v)] bg-[var(--yellow)] px-6 py-4 text-lg font-bold text-[var(--v-dark)] transition hover:bg-transparent hover:text-[var(--light-v)]"
+<footer class="border-t border-white/20 bg-[var(--v-dark)]">
+    <div class="mx-auto max-w-6xl px-6 py-10">
+        <!-- Navigation -->
+        <nav
+            class="mb-8 flex flex-col items-center gap-4 md:flex-row md:justify-center md:gap-8"
         >
-            Je prends mon billet !
-        </a>
-    </section>
-
-    <section
-        aria-label="Accès rapides"
-        class="mx-auto grid max-w-6xl gap-8 px-6 pb-16 md:grid-cols-2 lg:grid-cols-3"
-    >
-        <a
-            href="/programme"
-            class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
-        >
-            <img
-                src="/img/Accueil/vitrineprogrammeacceuil.avif"
-                alt="Aller à la page Programme"
-                class="h-full w-full object-cover"
-            />
-            <span
-                class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
-            >
+            <a href="/programme" class="transition hover:text-[var(--yellow)]">
                 Programme
-            </span>
-        </a>
+            </a>
 
-        <a
-            href="/artistes"
-            class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
-        >
-            <img
-                src="/img/Accueil/vitrineartistesacceuil.avif"
-                alt="Aller à la page Artistes"
-                class="h-full w-full object-cover"
-            />
-            <span
-                class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
-            >
-                Artistes
-            </span>
-        </a>
-
-        <a
-            href="/infos-pratiques"
-            class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
-        >
-            <img
-                src="/img/Accueil/vitrineinformationsacceuil.avif"
-                alt="Aller à la page Informations pratiques"
-                class="h-full w-full object-cover"
-            />
-            <span
-                class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
+            <a
+                href="/infos-pratiques"
+                class="transition hover:text-[var(--yellow)]"
             >
                 Informations pratiques
-            </span>
-        </a>
-    </section>
+            </a>
 
-    <section class="mx-auto max-w-6xl px-6 pb-16 text-center">
-        <h2 class="mb-8 text-4xl md:text-5xl">Ils nous soutiennent</h2>
+            <a href="/a-propos" class="transition hover:text-[var(--yellow)]">
+                À propos
+            </a>
 
-        <div class="grid gap-6 md:grid-cols-3">
-            <div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
-                <p class="text-lg uppercase tracking-[0.2em]">
-                    La Citadelle de Besançon
-                </p>
-            </div>
-            <div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
-                <p class="text-lg uppercase tracking-[0.2em]">Arte</p>
-            </div>
-            <div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
-                <p class="text-lg uppercase tracking-[0.2em]">
-                    L’Est Républicain
-                </p>
-            </div>
+            <a href="/contact" class="transition hover:text-[var(--yellow)]">
+                Contact
+            </a>
+        </nav>
+
+        <!-- Réseaux -->
+        <div class="mb-8 flex justify-center gap-6 text-sm">
+            <a href="#" class="transition hover:text-[var(--yellow)]">
+                Instagram
+            </a>
+
+            <a href="#" class="transition hover:text-[var(--yellow)]">
+                Facebook
+            </a>
+
+            <a href="#" class="transition hover:text-[var(--yellow)]">
+                Podcasts
+            </a>
         </div>
-    </section>
-</Layout>
+
+        <!-- Logo -->
+        <div class="flex justify-center">
+            <img
+                src="/icons/logofestival.svg"
+                alt="Logo Chorus Symphonia"
+                class="h-10 w-auto opacity-80"
+            />
+        </div>
+
+        <!-- Copyright -->
+        <p class="mt-6 text-center text-sm opacity-70">
+            © 2026 Chorus Symphonia — Festival de musique classique
+        </p>
+    </div>
+</footer>

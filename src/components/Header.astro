@@ -6,6 +6,8 @@ const links = [
     { href: "/artistes", label: "Artistes" },
     { href: "/scenes", label: "Scènes" },
     { href: "/infos-pratiques", label: "Informations pratiques" },
+    { href: "/a-propos", label: "À propos" },
+    { href: "/contact", label: "Contact" },
 ];
 
 const isActive = (href) => {
@@ -14,67 +16,184 @@ const isActive = (href) => {
 };
 ---
 
-<header class="header">
-    <a class="header__link" href="/">
-        <img
-            class="header__logo"
-            src="/icons/logofestival.svg"
-            alt="Logo Chorus Symphonia"
-        />
-    </a>
+<header class="absolute inset-x-0 top-0 z-50 w-full">
+    <div class="mx-auto max-w-6xl px-5 pt-4 md:px-6 md:pt-5">
+        <div class="flex items-start justify-between">
+            <a
+                href="/"
+                class="shrink-0 transition-opacity duration-300 hover:opacity-80"
+                aria-label="Retour à l’accueil de Chorus Symphonia"
+            >
+                <img
+                    src="/icons/logofestival.svg"
+                    alt="Chorus Symphonia"
+                    class="h-auto w-[110px] md:w-[125px]"
+                />
+            </a>
 
-    <button
-        class="header__menu-btn menu-btn"
-        aria-label="Menu principal"
-        aria-expanded="false"
-        aria-controls="mainNav"
-    >
-        <img src="/icons/menuburger.svg" alt="" aria-hidden="true" />
-    </button>
-
-    <nav class="header__menu menu" id="mainNav">
-        <ul class="menu__list u-list-unstyled">
-            {
-                links.map((link) => (
-                    <li class="menu__item">
+            <nav
+                class="hidden items-center gap-5 lg:flex"
+                aria-label="Navigation principale"
+            >
+                {
+                    links.map((link) => (
                         <a
-                            class={menu__link ${isActive(link.href) ? "menu__link--active" : ""}}
                             href={link.href}
+                            aria-current={
+                                isActive(link.href) ? "page" : undefined
+                            }
+                            class={`text-sm uppercase tracking-[0.18em] transition hover:text-[var(--yellow)] ${
+                                isActive(link.href)
+                                    ? "font-bold text-[var(--yellow)]"
+                                    : "text-[var(--light-v)]"
+                            }`}
                         >
                             {link.label}
                         </a>
-                    </li>
-                ))
-            }
-        </ul>
-    </nav>
+                    ))
+                }
+            </nav>
+
+            <button
+                id="menuBtn"
+                class="relative flex h-6 w-[47px] items-center justify-center lg:hidden"
+                aria-label="Ouvrir le menu"
+                aria-expanded="false"
+                aria-controls="mobileMenu"
+                type="button"
+            >
+                <span
+                    class="menu-line menu-line-top absolute h-[2px] w-[47px] bg-[var(--light-v)] transition-all duration-300"
+                ></span>
+                <span
+                    class="menu-line menu-line-middle absolute h-[2px] w-[47px] bg-[var(--light-v)] transition-all duration-300"
+                ></span>
+                <span
+                    class="menu-line menu-line-bottom absolute h-[2px] w-[47px] bg-[var(--light-v)] transition-all duration-300"
+                ></span>
+            </button>
+        </div>
+    </div>
 </header>
 
+<nav
+    id="mobileMenu"
+    class="pointer-events-none fixed inset-0 z-[100] opacity-0 transition duration-300 lg:hidden"
+    aria-hidden="true"
+>
+    <div class="absolute inset-0 bg-[var(--dark)]/92 backdrop-blur-md"></div>
+
+    <div class="relative flex h-full flex-col bg-[var(--dark)]/96">
+        <div class="flex items-start justify-between px-6 pt-5">
+            <img
+                src="/icons/logofestival.svg"
+                alt="Chorus Symphonia"
+                class="h-auto w-[110px]"
+            />
+
+            <button
+                id="menuClose"
+                class="relative flex h-10 w-10 items-center justify-center"
+                aria-label="Fermer le menu"
+                type="button"
+            >
+                <span class="absolute h-[2px] w-8 rotate-45 bg-[var(--light-v)]"
+                ></span>
+                <span
+                    class="absolute h-[2px] w-8 -rotate-45 bg-[var(--light-v)]"
+                ></span>
+            </button>
+        </div>
+
+        <div class="flex flex-1 flex-col justify-center px-6">
+            {
+                links.map((link) => (
+                    <a
+                        href={link.href}
+                        aria-current={isActive(link.href) ? "page" : undefined}
+                        class={`border-b border-white/10 py-5 text-center text-xl uppercase tracking-[0.16em] transition ${
+                            isActive(link.href)
+                                ? "font-bold text-[var(--yellow)]"
+                                : "text-[var(--light-v)] hover:text-white"
+                        }`}
+                    >
+                        {link.label}
+                    </a>
+                ))
+            }
+        </div>
+    </div>
+</nav>
+
 <script>
-    const menuBtn = document.querySelector(".menu-btn");
-    const menu = document.querySelector(".menu");
-    const menuLinks = document.querySelectorAll(".menu__link");
+    const menuBtn = document.getElementById("menuBtn");
+    const mobileMenu = document.getElementById("mobileMenu");
+    const menuClose = document.getElementById("menuClose");
     const body = document.body;
 
+    const topLine = menuBtn?.querySelector(".menu-line-top");
+    const middleLine = menuBtn?.querySelector(".menu-line-middle");
+    const bottomLine = menuBtn?.querySelector(".menu-line-bottom");
+
+    function openMenu() {
+        mobileMenu?.classList.remove("pointer-events-none", "opacity-0");
+        mobileMenu?.classList.add("pointer-events-auto", "opacity-100");
+        menuBtn?.setAttribute("aria-expanded", "true");
+        mobileMenu?.setAttribute("aria-hidden", "false");
+        body.classList.add("overflow-hidden");
+
+        topLine?.classList.add("rotate-45");
+        topLine?.classList.remove("-translate-y-2");
+
+        middleLine?.classList.add("opacity-0");
+
+        bottomLine?.classList.add("-rotate-45");
+        bottomLine?.classList.remove("translate-y-2");
+    }
+
+    function closeMenu() {
+        mobileMenu?.classList.add("pointer-events-none", "opacity-0");
+        mobileMenu?.classList.remove("pointer-events-auto", "opacity-100");
+        menuBtn?.setAttribute("aria-expanded", "false");
+        mobileMenu?.setAttribute("aria-hidden", "true");
+        body.classList.remove("overflow-hidden");
+
+        topLine?.classList.remove("rotate-45");
+        topLine?.classList.add("-translate-y-2");
+
+        middleLine?.classList.remove("opacity-0");
+
+        bottomLine?.classList.remove("-rotate-45");
+        bottomLine?.classList.add("translate-y-2");
+    }
+
+    topLine?.classList.add("-translate-y-2");
+    bottomLine?.classList.add("translate-y-2");
+
     menuBtn?.addEventListener("click", () => {
-        const open = menu.classList.toggle("is-active");
-        menuBtn.setAttribute("aria-expanded", open);
-        body.classList.toggle("u-noscroll");
+        const isOpen = menuBtn?.getAttribute("aria-expanded") === "true";
+        if (isOpen) {
+            closeMenu();
+        } else {
+            openMenu();
+        }
     });
 
-    menuLinks.forEach((link) => {
-        link.addEventListener("click", () => {
-            menu.classList.remove("is-active");
-            menuBtn.setAttribute("aria-expanded", "false");
-            body.classList.remove("u-noscroll");
-        });
+    menuClose?.addEventListener("click", closeMenu);
+
+    mobileMenu?.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", closeMenu);
     });
 
     document.addEventListener("keydown", (e) => {
-        if (e.key === "Escape" && menu.classList.contains("is-active")) {
-            menu.classList.remove("is-active");
-            menuBtn.setAttribute("aria-expanded", "false");
-            body.classList.remove("u-noscroll");
+        if (e.key === "Escape") {
+            closeMenu();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        if (window.innerWidth >= 1024) {
+            closeMenu();
         }
     });
 </script>

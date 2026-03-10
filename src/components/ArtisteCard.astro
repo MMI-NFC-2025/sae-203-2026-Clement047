@@ -1,47 +1,20 @@
 ---
 import { getImageUrl } from "../../backend/backend.mjs";
+import FloatingLabelCard from "./FloatingLabelCard.astro";
 
 const { artiste, representation } = Astro.props;
 
 const nom = artiste?.nom ?? "Artiste";
-const genre = artiste?.genre_musical ?? "Genre non renseigné";
 const photo = artiste?.photo_principale ?? null;
-const date = representation?.date_representation;
-const heure = representation?.heure_representation;
-const scene = representation?.expand?.scene?.nom;
+const photoSrc = photo ? getImageUrl(artiste, photo) : null;
 ---
 
-<article
-    class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
->
-    <a href={`/artistes/${artiste.id}`} class="block h-full">
-        {
-            photo ? (
-                <img
-                    src={getImageUrl(artiste, photo)}
-                    alt={`Photo de ${nom}`}
-                    class="aspect-[4/5] w-full object-cover"
-                />
-            ) : (
-                <div class="flex aspect-[4/5] w-full items-center justify-center bg-white/5 text-center">
-                    Aucune image
-                </div>
-            )
-        }
-
-        <div class="space-y-2 p-4">
-            <h2 class="text-4xl leading-none md:text-5xl">{nom}</h2>
-            <p class="text-lg">{genre}</p>
-
-            {
-                date && (
-                    <p class="text-sm md:text-base">
-                        {date?.slice(0, 10).split("-").reverse().join("/")}
-                        {heure ? ` • ${heure}` : ""}
-                        {scene ? ` • ${scene}` : ""}
-                    </p>
-                )
-            }
-        </div>
-    </a>
-</article>
+<FloatingLabelCard
+	href={`/artistes/${artiste.id}`}
+	imageSrc={photoSrc}
+	imageAlt={`Photo de ${nom}`}
+	label={nom}
+	aspectClass="aspect-[16/10]"
+	labelAlign="end"
+	labelWidthClass="min-w-[128px] justify-center"
+/>

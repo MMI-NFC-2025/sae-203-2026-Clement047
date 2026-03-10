@@ -1,106 +1,171 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import FloatingLabelCard from "../components/FloatingLabelCard.astro";
 ---
 
-<Layout title="Accueil - Chorus Symphonia">
-	<section
-		id="hero"
-		class="flex min-h-screen flex-col items-center justify-end bg-[url('/img/Accueil/fondetoileaccueil.avif')] bg-cover bg-center bg-no-repeat px-6 pb-12 pt-32 text-center md:pb-16 md:pt-40"
-	>
+<Layout title="Accueil - Chorus Symphonia" fullScreen={true}>
+	<section id="hero" class="relative isolate min-h-screen overflow-hidden">
 		<img
-			src="/icons/logofestival.svg"
-			alt="Logo Chorus Symphonia"
-			class="w-full max-w-xl"
+			src="/img/Acceuil/fondetoileacceuil.avif"
+			alt=""
+			aria-hidden="true"
+			class="absolute inset-0 z-0 h-full w-full object-cover object-center"
+			loading="eager"
+			decoding="async"
 		/>
 
-		<p class="mt-4 text-2xl md:text-3xl">28–31 août 2026</p>
+		<!-- Dégradé fondu en haut -->
+		<div
+			class="absolute inset-x-0 top-0 z-[1] h-40 bg-gradient-to-b from-[var(--v-dark)] to-transparent"
+		>
+		</div>
+
+		<!-- Dégradé fondu en bas -->
+		<div
+			class="absolute inset-x-0 bottom-0 z-[1] h-48 bg-gradient-to-t from-[var(--v-dark)] to-transparent"
+		>
+		</div>
+
+		<!-- Contenu centré -->
+		<div
+			class="relative z-10 flex min-h-screen flex-col items-center justify-end px-4 pb-[15vh]"
+		>
+			<div class="flex flex-col items-center w-[95vw] max-w-[700px]">
+				<img
+					src="/icons/logofestival.svg"
+					alt="Logo Chorus Symphonia"
+					class="w-full h-auto"
+				/>
+
+				<p
+					class="-mt-2 text-center text-[32px] md:text-[48px] font-normal font-[Mohave] tracking-normal text-[var(--light-v)]"
+				>
+					28 - 31 août 2026
+				</p>
+			</div>
+		</div>
+
+		<!-- Étoile en bas à droite -->
+		<img
+			src="/icons/etoile3.svg"
+			alt=""
+			aria-hidden="true"
+			class="absolute bottom-6 right-8 z-10 w-12 h-[91px] md:w-16 md:h-[91px] md:bottom-8 md:right-12"
+		/>
 	</section>
 
-	<section class="mx-auto max-w-4xl px-6 py-12 text-center">
-		<h1 class="text-5xl md:text-7xl">
-			Festival de musique classique à la Citadelle de Besançon
+	<!-- ...existing code... -->
+	<section
+		class="mx-auto max-w-[350px] px-6 pb-8 pt-10 md:max-w-[1180px] md:px-10 md:pb-10 md:pt-16"
+	>
+		<h1
+			class="text-left text-[54px] leading-[0.98] font-normal text-[var(--light-v)] md:max-w-[350px] md:text-[64px] md:leading-[68px]"
+		>
+			Festival
+			<br />
+			de <span class="text-[var(--vi)]">musique</span>
+			<br />
+			<span class="text-[var(--vi)]">classique</span>
+			<br />
+			à la <span class="text-[var(--vi)]">Citadelle</span>
+			<br />
+			de <span class="text-[var(--vi)]">Besançon</span>
 		</h1>
 	</section>
 
-	<section class="flex justify-center px-6 pb-12">
+	<section
+		class="flex items-center justify-center gap-6 px-6 pb-14 md:justify-start md:gap-10 md:px-10 md:pb-16"
+	>
+		<img
+			src="/icons/etoile1.svg"
+			alt=""
+			aria-hidden="true"
+			class="h-10 w-10 shrink-0"
+		/>
 		<a
 			href="#"
-			class="inline-block border border-[var(--light-v)] bg-[var(--yellow)] px-6 py-4 text-lg font-bold text-[var(--v-dark)] transition hover:bg-transparent hover:text-[var(--light-v)]"
+			class="inline-block transition duration-200 hover:opacity-90"
 		>
-			Je prends mon billet !
+			<img
+				src="/icons/cta.svg"
+				alt="Je prends mon billet !"
+				class="h-auto w-[212px]"
+			/>
 		</a>
+		<img
+			src="/icons/etoile2.svg"
+			alt=""
+			aria-hidden="true"
+			class="h-10 w-10 shrink-0"
+		/>
 	</section>
 
 	<section
 		aria-label="Accès rapides"
-		class="mx-auto grid max-w-6xl gap-8 px-6 pb-16 md:grid-cols-2 lg:grid-cols-3"
+		class="mx-auto grid max-w-[390px] gap-10 px-6 pb-16 md:max-w-6xl md:grid-cols-2 md:gap-x-10 md:gap-y-12 lg:grid-cols-3"
 	>
-		<a
+		<FloatingLabelCard
 			href="/programme"
-			class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
-		>
-			<img
-				src="/img/Accueil/vitrineprogrammeaccueil.avif"
-				alt="Aller à la page Programme"
-				class="h-full w-full object-cover"
-			/>
-			<span
-				class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
-			>
-				Programme
-			</span>
-		</a>
+			imageSrc="/img/Acceuil/vitrineprogrammeacceuil.avif"
+			imageAlt="Aller à la page Programme"
+			label="Programme"
+			aspectClass="aspect-[344/156]"
+			labelAlign="end"
+			labelWidthClass="w-[244px] justify-center"
+		/>
 
-		<a
+		<FloatingLabelCard
 			href="/artistes"
-			class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
-		>
-			<img
-				src="/img/Accueil/vitrineartistesaccueil.avif"
-				alt="Aller à la page Artistes"
-				class="h-full w-full object-cover"
-			/>
-			<span
-				class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
-			>
-				Artistes
-			</span>
-		</a>
+			imageSrc="/img/Acceuil/vitrineartistesacceuil.avif"
+			imageAlt="Aller à la page Artistes"
+			label="Artistes"
+			aspectClass="aspect-[344/156]"
+			labelAlign="end"
+			labelWidthClass="w-[244px] justify-center"
+		/>
 
-		<a
+		<FloatingLabelCard
 			href="/infos-pratiques"
-			class="overflow-hidden border border-[var(--light-v)] bg-white/5 transition hover:bg-white/10"
-		>
-			<img
-				src="/img/Accueil/vitrineinformationsaccueil.avif"
-				alt="Aller à la page Informations pratiques"
-				class="h-full w-full object-cover"
-			/>
-			<span
-				class="-mt-6 mr-4 inline-block border border-[var(--light-v)] bg-[var(--v-dark)] px-4 py-3 text-lg"
-			>
-				Informations pratiques
-			</span>
-		</a>
+			imageSrc="/img/Acceuil/vitrineinformationsacceuil.avif"
+			imageAlt="Aller à la page Informations pratiques"
+			label="Informations"
+			aspectClass="aspect-[344/156]"
+			labelAlign="end"
+			labelWidthClass="w-[244px] justify-center"
+		/>
 	</section>
 
-	<section class="mx-auto max-w-6xl px-6 pb-16 text-center">
-		<h2 class="mb-8 text-4xl md:text-5xl">Ils nous soutiennent</h2>
-
-		<div class="grid gap-6 md:grid-cols-3">
-			<div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
-				<p class="text-lg uppercase tracking-[0.2em]">
-					La Citadelle de Besançon
-				</p>
-			</div>
-			<div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
-				<p class="text-lg uppercase tracking-[0.2em]">Arte</p>
-			</div>
-			<div class="border border-[var(--light-v)] bg-white/5 px-6 py-8">
-				<p class="text-lg uppercase tracking-[0.2em]">
-					L’Est Républicain
-				</p>
-			</div>
+	<section class="mx-auto max-w-[390px] px-6 pb-0 pt-8 md:max-w-6xl md:px-10 md:pt-16">
+		<div class="flex items-center gap-4 md:gap-5">
+			<img
+				src="/icons/etoile1.svg"
+				alt=""
+				aria-hidden="true"
+				class="h-10 w-10 shrink-0"
+			/>
+			<h2 class="text-[28px] font-bold leading-none text-[var(--yellow)] md:text-[42px]">
+				Nos partenaires
+			</h2>
 		</div>
+
+		<div class="flex flex-col items-center gap-18 px-2 py-16 md:grid md:grid-cols-3 md:items-center md:gap-12 md:px-0 md:py-20">
+			<img
+				src="/icons/logocitadelle1.svg"
+				alt="Logo de la Citadelle de Besançon"
+				class="h-auto w-[150px] md:w-[220px]"
+			/>
+			<img
+				src="/icons/artelogo1.svg"
+				alt="Logo Arte"
+				class="h-auto w-[150px] md:w-[190px]"
+			/>
+			<img
+				src="/icons/estrepublicainlogo1.svg"
+				alt="Logo L'Est Républicain"
+				class="h-auto w-[150px] md:w-[190px]"
+			/>
+		</div>
+
+		<div class="h-[4px] w-full bg-[var(--dark)]/90"></div>
 	</section>
 </Layout>

@@ -1,0 +1,66 @@
+---
+const {
+	href,
+	imageSrc = null,
+	imageAlt = "",
+	label,
+	aspectClass = "aspect-[16/9]",
+	labelAlign = "end",
+	labelWidthClass = "",
+	imgClass = "",
+	cardClass = "",
+	showArrow = true,
+	placeholder = "Aucune image",
+} = Astro.props;
+
+const alignmentClass =
+	labelAlign === "center"
+		? "left-1/2 -translate-x-1/2"
+		: labelAlign === "start"
+			? "left-4 md:left-6"
+			: "right-0 md:right-0";
+---
+
+
+<article class:list={["group relative mb-8 md:mb-10", cardClass]}>
+	<a href={href} class="relative block">
+		<div
+			class:list={[
+				"relative overflow-hidden border border-[var(--light-v)]",
+				aspectClass,
+			]}
+		>
+			{
+				imageSrc ? (
+					<img
+						src={imageSrc}
+						alt={imageAlt}
+						class:list={[
+							"absolute inset-0 block !h-full !w-full object-cover transition duration-300 group-hover:scale-[1.02]",
+							imgClass,
+						]}
+					/>
+				) : (
+					<div class="absolute inset-0 flex h-full w-full items-center justify-center bg-white/5 text-center text-lg text-[var(--light-v)]/80">
+						{placeholder}
+					</div>
+				)
+			}
+		</div>
+
+		<div class:list={[
+			"absolute bottom-0 z-10 translate-y-[28%]",
+			alignmentClass,
+		]}>
+			<span
+				class:list={[
+					"inline-flex max-w-full items-center gap-3 border border-[var(--light-v)] bg-[var(--v-dark)] px-5 py-3 text-[18px] leading-none text-[var(--light-v)] md:px-7 md:py-4 md:text-[22px]",
+					labelWidthClass,
+				]}
+			>
+				{showArrow && <span aria-hidden="true" class="text-[1.1em] leading-none">&gt;</span>}
+				<span>{label}</span>
+			</span>
+		</div>
+	</a>
+</article>

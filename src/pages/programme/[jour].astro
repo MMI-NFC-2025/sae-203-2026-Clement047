@@ -1,0 +1,98 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { getArtistesByDate } from "../../../backend/backend.mjs";
+
+const { jour } = Astro.params;
+const representations = await getArtistesByDate();
+
+const getJourKey = (value) => {
+    if (!value) return "";
+
+    const date = new Date(value);
+
+    const parts = new Intl.DateTimeFormat("fr-FR", {
+        timeZone: "Europe/Paris",
+        year: "numeric",
+        month: "2-digit",
+        day: "2-digit",
+    }).formatToParts(date);
+
+    const year = parts.find((p) => p.type === "year")?.value;
+    const month = parts.find((p) => p.type === "month")?.value;
+    const day = parts.find((p) => p.type === "day")?.value;
+
+    return `${year}-${month}-${day}`;
+};
+
+const formatDateLabel = (value) => {
+    if (!value) return "";
+
+    return new Intl.DateTimeFormat("fr-FR", {
+        timeZone: "Europe/Paris",
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    }).format(new Date(value));
+};
+
+const programmesFiltres = representations.filter((rep) => {
+    return getJourKey(rep.date_representation) === jour;
+});
+---
+
+<Layout title={`Programme du ${formatDateLabel(jour)} - Chorus Symphonia`}>
+    <section class="page-hero page-hero--small">
+        <h1 class="page-hero__title">Programme du {formatDateLabel(jour)}</h1>
+        <p class="page-hero__intro">Représentations prévues à cette date.</p>
+    </section>
+
+    <section class="programme-list">
+        {
+            programmesFiltres.length > 0 ? (
+                <div class="programme-list__items">
+                    {programmesFiltres.map((rep) => (
+                        <article class="programme-item">
+                            <p class="programme-item__date">
+                                <strong>
+                                    {formatDateLabel(rep.date_representation)}
+                                </strong>
+                                {rep.heure_representation
+                                    ? ` • ${rep.heure_representation}`
+                                    : ""}
+                            </p>
+
+                            <h2 class="programme-item__title">
+                                <a
+                                    href={`/artistes/${rep.expand?.artiste?.id}`}
+                                >
+                                    {rep.expand?.artiste?.nom ?? "Artiste"}
+                                </a>
+                            </h2>
+
+                            <p class="programme-item__meta">
+                                {rep.expand?.scene?.nom ??
+                                    "Scène non renseignée"}
+                            </p>
+
+                            <p class="programme-item__genre">
+                                {rep.expand?.artiste?.genre_musical ??
+                                    "Genre non renseigné"}
+                            </p>
+                        </article>
+                    ))}
+                </div>
+            ) : (
+                <p class="programme-list__empty">
+                    Aucune représentation n’est prévue à cette date.
+                </p>
+            )
+        }
+
+        <p style="margin-top: 2rem;">
+            <a href="/programme" class="scene-detail__back"
+                >← Retour au programme complet</a
+            >
+        </p>
+    </section>
+</Layout>

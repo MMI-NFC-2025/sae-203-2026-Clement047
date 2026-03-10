@@ -1,0 +1,28 @@
+---
+import { getImageUrl } from "../../backend/backend.mjs";
+
+const { scene } = Astro.props;
+
+const nom = scene?.nom ?? "Scène";
+const photo = scene?.photo ?? null;
+---
+
+<article class="scene-card">
+    <a href={`/scenes/${scene.id}`} class="scene-card__link">
+        {
+            photo ? (
+                <img
+                    src={getImageUrl(scene, photo)}
+                    alt={`Photo de ${nom}`}
+                    class="scene-card__img"
+                />
+            ) : (
+                <div class="scene-card__placeholder">Aucune image</div>
+            )
+        }
+
+        <div class="scene-card__content">
+            <h2 class="scene-card__title">{nom}</h2>
+        </div>
+    </a>
+</article>

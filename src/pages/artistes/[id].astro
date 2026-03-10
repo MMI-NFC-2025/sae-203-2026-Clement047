@@ -1,0 +1,121 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import {
+    getArtisteById,
+    getArtistesByDate,
+    getImageUrl,
+} from "../../../backend/backend.mjs";
+
+const { id } = Astro.params;
+
+const artiste = await getArtisteById(id);
+const representations = await getArtistesByDate();
+
+const artisteRepresentations = representations.filter(
+    (rep) => rep.expand?.artiste?.id === id,
+);
+
+// photo_principale = fichier simple
+const photo = artiste?.photo_principale ?? null;
+
+// galerie_photo = fichiers multiples
+const galerie = artiste?.galerie_photo ?? [];
+---
+
+<Layout title={`${artiste?.nom ?? "Artiste"} - Chorus Symphonia`}>
+    {
+        artiste ? (
+            <>
+                <section class="page-hero page-hero--small">
+                    <h1 class="page-hero__title">{artiste.nom}</h1>
+                    <p class="page-hero__intro">
+                        {artiste.genre_musical ?? "Genre non renseigné"}
+                    </p>
+                </section>
+
+                <section class="artiste-detail">
+                    <div class="artiste-detail__media">
+                        {photo ? (
+                            <img
+                                src={getImageUrl(artiste, photo)}
+                                alt={`Photo de ${artiste.nom}`}
+                                class="artiste-detail__img"
+                            />
+                        ) : (
+                            <div class="artiste-detail__placeholder">
+                                Aucune image disponible
+                            </div>
+                        )}
+                    </div>
+
+                    <div class="artiste-detail__content">
+                        <h2 class="artiste-detail__subtitle">Présentation</h2>
+
+                        <div
+                            class="artiste-detail__text"
+                            set:html={
+                                artiste.description ??
+                                "<p>Aucune description disponible.</p>"
+                            }
+                        />
+
+                        <h2 class="artiste-detail__subtitle">
+                            Au programme du festival
+                        </h2>
+
+                        {artisteRepresentations.length > 0 ? (
+                            <ul class="artiste-detail__list">
+                                {artisteRepresentations.map((rep) => (
+                                    <li class="artiste-detail__item">
+                                        <strong>
+                                            {rep.date_representation
+                                                ?.split("-")
+                                                .reverse()
+                                                .join("/")}
+                                        </strong>
+                                        {rep.heure_representation
+                                            ? ` • ${rep.heure_representation}`
+                                            : ""}
+                                        {rep.expand?.scene?.nom
+                                            ? ` • ${rep.expand.scene.nom}`
+                                            : ""}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p class="artiste-detail__text">
+                                Aucune représentation trouvée.
+                            </p>
+                        )}
+
+                        <a href="/artistes" class="artiste-detail__back">
+                            ← Retour aux artistes
+                        </a>
+                    </div>
+                </section>
+
+                {galerie.length > 0 && (
+                    <section class="artiste-gallery">
+                        <h2 class="artiste-gallery__title">Galerie</h2>
+                        <div class="artiste-gallery__grid">
+                            {galerie.map((image) => (
+                                <img
+                                    src={getImageUrl(artiste, image)}
+                                    alt={`Galerie de ${artiste.nom}`}
+                                    class="artiste-gallery__img"
+                                />
+                            ))}
+                        </div>
+                    </section>
+                )}
+            </>
+        ) : (
+            <section class="page-hero page-hero--small">
+                <h1 class="page-hero__title">Artiste introuvable</h1>
+                <p class="page-hero__intro">
+                    Cet artiste n’existe pas ou n’est plus disponible.
+                </p>
+            </section>
+        )
+    }
+</Layout>

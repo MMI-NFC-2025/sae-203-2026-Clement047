@@ -30,3 +30,7 @@ pnpm-debug.log*
 **/auxiliary.db-wal
 **/data.db-shm
 **/data.db-wal
+
+backend/pb_data/
+backend/pb_migrations/
+backend/pocketbase/

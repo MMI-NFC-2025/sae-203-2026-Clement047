@@ -1,10 +1,78 @@
 ---
-import Layout from '../layouts/Layout.astro';
-
-// Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
-// Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
+import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout>
-	<h1>Welcome to Astro!</h1>
+<Layout title="Accueil - Chorus Symphonia">
+	<section class="home-hero" id="hero">
+		<img
+			src="/icons/logofestival.svg"
+			alt="Logo Chorus Symphonia"
+			class="home-hero__logo"
+		/>
+
+		<p class="home-hero__dates">28–31 août 2026</p>
+	</section>
+
+	<section class="section-intro">
+		<h1 class="section-intro__title">
+			Festival de musique classique à la Citadelle de Besançon
+		</h1>
+	</section>
+
+	<section class="cta">
+		<a href="#" class="cta-btn">Je prends mon billet !</a>
+	</section>
+
+	<section class="home-cards" aria-label="Accès rapides">
+		<a href="/programme" class="home-card">
+			<img
+				src="/img/Programme/card-programme.webp"
+				alt="Aller à la page Programme"
+				class="home-card__img"
+			/>
+			<span class="home-card__label">Programme</span>
+		</a>
+
+		<a href="/artistes" class="home-card">
+			<img
+				src="/img/Artistes/card-artistes.webp"
+				alt="Aller à la page Artistes"
+				class="home-card__img"
+			/>
+			<span class="home-card__label">Artistes</span>
+		</a>
+
+		<a href="/infos-pratiques" class="home-card">
+			<img
+				src="/img/Informations/card-informations.webp"
+				alt="Aller à la page Informations pratiques"
+				class="home-card__img"
+			/>
+			<span class="home-card__label">Informations pratiques</span>
+		</a>
+	</section>
+
+	<section class="partners" aria-labelledby="partners-title">
+		<h2 id="partners-title" class="partners__title">
+			Ils nous soutiennent
+		</h2>
+
+		<div class="partners__logos">
+			<img
+				src="/img/Accueil/logocitadelle1.webp"
+				alt="Logo de la Citadelle de Besançon"
+				class="partners__logo"
+			/>
+			<img
+				src="/img/Accueil/artelogo1.webp"
+				alt="Logo Arte"
+				class="partners__logo"
+			/>
+			<img
+				src="/img/Accueil/estrepublicainlogo1.webp"
+				alt="Logo de l'Est Républicain"
+				class="partners__logo"
+			/>
+		</div>
+	</section>
 </Layout>

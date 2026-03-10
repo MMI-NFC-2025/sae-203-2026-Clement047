@@ -1,20 +1,55 @@
 ---
-import '../styles/global.css';
+import "../styles/global.css";
+import Header from "../components/Header.astro";
+import Footer from "../components/Footer.astro";
+
+const { title = "Chorus Symphonia" } = Astro.props;
 ---
 
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta
+			name="description"
+			content="Chorus Symphonia : festival de musique classique à la Citadelle de Besançon."
+		/>
+		<title>{title}</title>
+
+		<link rel="icon" type="image/x-icon" href="/assets/icons/favicon.ico" />
+		<link
+			rel="icon"
+			type="image/png"
+			sizes="96x96"
+			href="/assets/icons/favicon-96x96.png"
+		/>
+		<link
+			rel="icon"
+			type="image/svg+xml"
+			href="/assets/icons/favicon.svg"
+		/>
+		<link
+			rel="apple-touch-icon"
+			sizes="180x180"
+			href="/assets/icons/apple-touch-icon.png"
+		/>
+		<meta name="apple-mobile-web-app-title" content="Chorus Symphonia" />
+		<link rel="manifest" href="/assets/icons/site.webmanifest" />
+
+		<link
+			href="https://fonts.googleapis.com/css2?family=Mohave:wght@300;400;700&display=swap"
+			rel="stylesheet"
+		/>
 	</head>
+
 	<body>
-		<slot />
+		<Header />
+
+		<main>
+			<slot />
+		</main>
+
+		<Footer />
 	</body>
 </html>
-
-

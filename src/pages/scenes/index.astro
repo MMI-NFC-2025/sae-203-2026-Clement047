@@ -1,0 +1,32 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import SceneCard from "../../components/SceneCard.astro";
+import { getScenesByName } from "../../../backend/backend.mjs";
+
+const scenes = await getScenesByName();
+---
+
+<Layout title="Scènes - Chorus Symphonia">
+    <section class="page-hero page-hero--small">
+        <h1 class="page-hero__title">Scènes</h1>
+        <p class="page-hero__intro">
+            Découvrez les différents espaces du festival Chorus Symphonia.
+        </p>
+    </section>
+
+    <section class="scenes-list">
+        {
+            scenes.length > 0 ? (
+                <div class="scenes-grid">
+                    {scenes.map((scene) => (
+                        <SceneCard scene={scene} />
+                    ))}
+                </div>
+            ) : (
+                <p class="scenes-list__empty">
+                    Aucune scène n’est disponible pour le moment.
+                </p>
+            )
+        }
+    </section>
+</Layout>

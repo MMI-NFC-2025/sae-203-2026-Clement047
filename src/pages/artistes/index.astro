@@ -1,0 +1,36 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import ArtisteCard from "../../components/ArtisteCard.astro";
+import { getArtistesByDate } from "../../../backend/backend.mjs";
+
+const representations = await getArtistesByDate();
+---
+
+<Layout title="Artistes - Chorus Symphonia">
+    <section class="page-hero page-hero--small">
+        <h1 class="page-hero__title">Artistes</h1>
+        <p class="page-hero__intro">
+            Découvrez les artistes programmés au festival Chorus Symphonia,
+            triés par date de représentation.
+        </p>
+    </section>
+
+    <section class="artistes-list">
+        {
+            representations.length > 0 ? (
+                <div class="artistes-grid">
+                    {representations.map((representation) => (
+                        <ArtisteCard
+                            artiste={representation.expand?.artiste}
+                            representation={representation}
+                        />
+                    ))}
+                </div>
+            ) : (
+                <p class="artistes-list__empty">
+                    Aucun artiste n’est disponible pour le moment.
+                </p>
+            )
+        }
+    </section>
+</Layout>

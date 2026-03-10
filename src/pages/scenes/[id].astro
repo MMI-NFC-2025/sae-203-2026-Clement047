@@ -1,0 +1,107 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import {
+    getSceneById,
+    getArtistesBySceneId,
+    getImageUrl,
+} from "../../../backend/backend.mjs";
+
+const { id } = Astro.params;
+
+const scene = await getSceneById(id);
+const representations = await getArtistesBySceneId(id);
+
+const photo = scene?.photo ?? null;
+---
+
+<Layout title={`${scene?.nom ?? "Scène"} - Chorus Symphonia`}>
+    {
+        scene ? (
+            <>
+                <section class="page-hero page-hero--small">
+                    <h1 class="page-hero__title">{scene.nom}</h1>
+                    <p class="page-hero__intro">
+                        {scene.localisation ?? "Localisation non renseignée"}
+                    </p>
+                </section>
+
+                <section class="scene-detail">
+                    <div class="scene-detail__media">
+                        {photo ? (
+                            <img
+                                src={getImageUrl(scene, photo)}
+                                alt={`Photo de ${scene.nom}`}
+                                class="scene-detail__img"
+                            />
+                        ) : (
+                            <div class="scene-detail__placeholder">
+                                Aucune image disponible
+                            </div>
+                        )}
+                    </div>
+
+                    <div class="scene-detail__content">
+                        <h2 class="scene-detail__subtitle">Présentation</h2>
+
+                        <div
+                            class="scene-detail__text"
+                            set:html={
+                                scene.description ??
+                                "<p>Aucune description disponible.</p>"
+                            }
+                        />
+
+                        <p class="scene-detail__meta">
+                            <strong>Capacité :</strong>
+                            {scene.capacite ?? "Non renseignée"}
+                        </p>
+
+                        <h2 class="scene-detail__subtitle">
+                            Artistes programmés
+                        </h2>
+
+                        {representations.length > 0 ? (
+                            <ul class="scene-detail__list">
+                                {representations.map((rep) => (
+                                    <li class="scene-detail__item">
+                                        <a
+                                            href={`/artistes/${rep.expand?.artiste?.id}`}
+                                            class="scene-detail__artist-link"
+                                        >
+                                            {rep.expand?.artiste?.nom ??
+                                                "Artiste"}
+                                        </a>
+                                        {" • "}
+                                        {rep.date_representation
+                                            ?.slice(0, 10)
+                                            .split("-")
+                                            .reverse()
+                                            .join("/")}
+                                        {rep.heure_representation
+                                            ? ` • ${rep.heure_representation}`
+                                            : ""}
+                                    </li>
+                                ))}
+                            </ul>
+                        ) : (
+                            <p class="scene-detail__text">
+                                Aucun artiste n’est programmé sur cette scène.
+                            </p>
+                        )}
+
+                        <a href="/scenes" class="scene-detail__back">
+                            ← Retour aux scènes
+                        </a>
+                    </div>
+                </section>
+            </>
+        ) : (
+            <section class="page-hero page-hero--small">
+                <h1 class="page-hero__title">Scène introuvable</h1>
+                <p class="page-hero__intro">
+                    Cette scène n’existe pas ou n’est plus disponible.
+                </p>
+            </section>
+        )
+    }
+</Layout>

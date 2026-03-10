@@ -1,0 +1,80 @@
+---
+const currentPath = Astro.url.pathname;
+
+const links = [
+    { href: "/programme", label: "Programme" },
+    { href: "/artistes", label: "Artistes" },
+    { href: "/scenes", label: "Scènes" },
+    { href: "/infos-pratiques", label: "Informations pratiques" },
+];
+
+const isActive = (href) => {
+    if (href === "/") return currentPath === "/";
+    return currentPath.startsWith(href);
+};
+---
+
+<header class="header">
+    <a class="header__link" href="/">
+        <img
+            class="header__logo"
+            src="/icons/logofestival.svg"
+            alt="Logo Chorus Symphonia"
+        />
+    </a>
+
+    <button
+        class="header__menu-btn menu-btn"
+        aria-label="Menu principal"
+        aria-expanded="false"
+        aria-controls="mainNav"
+    >
+        <img src="/icons/menuburger.svg" alt="" aria-hidden="true" />
+    </button>
+
+    <nav class="header__menu menu" id="mainNav">
+        <ul class="menu__list u-list-unstyled">
+            {
+                links.map((link) => (
+                    <li class="menu__item">
+                        <a
+                            class={`menu__link ${isActive(link.href) ? "menu__link--active" : ""}`}
+                            href={link.href}
+                        >
+                            {link.label}
+                        </a>
+                    </li>
+                ))
+            }
+        </ul>
+    </nav>
+</header>
+
+<script>
+    const menuBtn = document.querySelector(".menu-btn");
+    const menu = document.querySelector(".menu");
+    const menuLinks = document.querySelectorAll(".menu__link");
+    const body = document.body;
+
+    menuBtn?.addEventListener("click", () => {
+        const open = menu.classList.toggle("is-active");
+        menuBtn.setAttribute("aria-expanded", open);
+        body.classList.toggle("u-noscroll");
+    });
+
+    menuLinks.forEach((link) => {
+        link.addEventListener("click", () => {
+            menu.classList.remove("is-active");
+            menuBtn.setAttribute("aria-expanded", "false");
+            body.classList.remove("u-noscroll");
+        });
+    });
+
+    document.addEventListener("keydown", (e) => {
+        if (e.key === "Escape" && menu.classList.contains("is-active")) {
+            menu.classList.remove("is-active");
+            menuBtn.setAttribute("aria-expanded", "false");
+            body.classList.remove("u-noscroll");
+        }
+    });
+</script>

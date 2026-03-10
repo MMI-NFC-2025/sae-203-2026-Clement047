@@ -1,0 +1,43 @@
+---
+import { getImageUrl } from "../../backend/backend.mjs";
+
+const { artiste, representation } = Astro.props;
+
+const nom = artiste?.nom ?? "Artiste";
+const genre = artiste?.genre_musical ?? "Genre non renseigné";
+const photo = artiste?.photo_principale ?? null;
+const date = representation?.date_representation;
+const heure = representation?.heure_representation;
+const scene = representation?.expand?.scene?.nom;
+---
+
+<article class="artiste-card">
+    <a href={`/artistes/${artiste.id}`} class="artiste-card__link">
+        {
+            photo ? (
+                <img
+                    src={getImageUrl(artiste, photo)}
+                    alt={`Photo de ${nom}`}
+                    class="artiste-card__img"
+                />
+            ) : (
+                <div class="artiste-card__placeholder">Aucune image</div>
+            )
+        }
+
+        <div class="artiste-card__content">
+            <h2 class="artiste-card__title">{nom}</h2>
+            <p class="artiste-card__genre">{genre}</p>
+
+            {
+                date && (
+                    <p class="artiste-card__meta">
+                        {date?.slice(0, 10).split("-").reverse().join("/")}
+                        {heure ? ` • ${heure}` : ""}
+                        {scene ? ` • ${scene}` : ""}
+                    </p>
+                )
+            }
+        </div>
+    </a>
+</article>

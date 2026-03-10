@@ -2,92 +2,93 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Contact - Chorus Symphonia">
-    <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
-        <h1 class="mb-4 text-5xl md:text-7xl">Contact</h1>
-        <p class="mx-auto max-w-2xl text-lg md:text-xl">
-            Une question sur le festival, la programmation ou l’accès au site ?
-            Contactez-nous via le formulaire ci-dessous.
+<Layout title="Contact - Chorus Symphonia" fullScreen={true}>
+    <section class="relative isolate">
+        <div class="relative h-[360px] md:h-[620px]">
+            <img
+                src="/img/Contact/imageherocontact.avif"
+                alt="Ciel étoilé au-dessus des reliefs"
+                class="absolute inset-0 h-full w-full object-cover"
+            />
+            <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:h-40"></div>
+        </div>
+    </section>
+
+    <section class="relative z-20 mx-auto max-w-[390px] -mt-[66px] overflow-visible px-6 pb-10 pt-0 md:max-w-6xl md:-mt-[82px] md:px-10 md:pb-14">
+        <h1 class="text-[62px] font-normal leading-[0.9] text-[var(--light-v)] md:text-[84px]">
+            Contact
+        </h1>
+    </section>
+
+    <section class="mx-auto max-w-[390px] px-6 pb-12 md:max-w-6xl md:px-10 md:pb-16">
+        <p class="max-w-[360px] text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:max-w-[780px] md:text-[28px] md:leading-[1.5]">
+            Pour toute demande générale, veuillez utiliser le formulaire ci-dessous. Nous nous engageons à vous répondre dans les meilleurs délais.
         </p>
     </section>
 
     <section
-        class="mx-auto grid max-w-6xl gap-8 px-6 pb-16 md:grid-cols-[2fr_1fr]"
+        class="mx-auto max-w-[390px] px-6 pb-16 md:max-w-6xl md:px-10 md:pb-20"
     >
-        <div>
-            <h2 class="mb-6 text-4xl md:text-5xl">Nous écrire</h2>
+        <div class="max-w-[360px] md:max-w-[760px]">
+            <p class="text-[14px] leading-[1.5] text-[var(--light-v)]/80 md:text-[18px]">
+                Les champs marqués d'un * sont obligatoires
+            </p>
 
-            <form method="post" class="flex flex-col gap-5">
-                <div class="flex flex-col gap-2">
-                    <label for="nom" class="font-bold">Nom</label>
-                    <input
-                        type="text"
-                        id="nom"
-                        name="nom"
-                        required
-                        class="w-full border border-[var(--light-v)] bg-transparent px-4 py-3 text-[var(--light-v)] outline-none"
-                    />
-                </div>
+            <form method="post" class="mt-8 flex flex-col gap-4 md:mt-10 md:gap-5">
+                <label class="sr-only" for="nom">Nom prénom *</label>
+                <input
+                    type="text"
+                    id="nom"
+                    name="nom"
+                    placeholder="Nom prénom *"
+                    required
+                    class="w-full border-0 bg-[rgba(217,198,226,0.38)] px-4 py-3 text-[18px] text-[var(--light-v)] placeholder:text-[var(--light-v)]/78 outline-none md:px-5 md:py-4 md:text-[22px]"
+                />
 
-                <div class="flex flex-col gap-2">
-                    <label for="email" class="font-bold">Email</label>
-                    <input
-                        type="email"
-                        id="email"
-                        name="email"
-                        required
-                        class="w-full border border-[var(--light-v)] bg-transparent px-4 py-3 text-[var(--light-v)] outline-none"
-                    />
-                </div>
+                <label class="sr-only" for="email">Adresse mail *</label>
+                <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="Adresse mail *"
+                    required
+                    class="w-full border-0 bg-[rgba(217,198,226,0.38)] px-4 py-3 text-[18px] text-[var(--light-v)] placeholder:text-[var(--light-v)]/78 outline-none md:px-5 md:py-4 md:text-[22px]"
+                />
 
-                <div class="flex flex-col gap-2">
-                    <label for="sujet" class="font-bold">Sujet</label>
-                    <input
-                        type="text"
-                        id="sujet"
-                        name="sujet"
-                        required
-                        class="w-full border border-[var(--light-v)] bg-transparent px-4 py-3 text-[var(--light-v)] outline-none"
-                    />
-                </div>
+                <label class="sr-only" for="sujet">Objet *</label>
+                <input
+                    type="text"
+                    id="sujet"
+                    name="sujet"
+                    placeholder="Objet *"
+                    required
+                    class="w-full border-0 bg-[rgba(217,198,226,0.38)] px-4 py-3 text-[18px] text-[var(--light-v)] placeholder:text-[var(--light-v)]/78 outline-none md:px-5 md:py-4 md:text-[22px]"
+                />
 
-                <div class="flex flex-col gap-2">
-                    <label for="message" class="font-bold">Message</label>
-                    <textarea
-                        id="message"
-                        name="message"
-                        rows="6"
-                        required
-                        class="min-h-[180px] w-full resize-y border border-[var(--light-v)] bg-transparent px-4 py-3 text-[var(--light-v)] outline-none"
-                    ></textarea>
-                </div>
-
-                <button
-                    type="submit"
-                    class="inline-block self-start border border-[var(--light-v)] bg-[var(--vi)] px-4 py-3 font-bold transition hover:bg-transparent"
-                >
-                    Envoyer
-                </button>
+                <label class="sr-only" for="message">Votre message *</label>
+                <textarea
+                    id="message"
+                    name="message"
+                    rows="9"
+                    placeholder="Votre message *"
+                    required
+                    class="min-h-[270px] w-full resize-none border-0 bg-[rgba(217,198,226,0.38)] px-4 py-4 text-[18px] text-[var(--light-v)] placeholder:text-[var(--light-v)]/78 outline-none md:min-h-[360px] md:px-5 md:py-5 md:text-[22px]"
+                ></textarea>
             </form>
+
+            <div class="mt-14 text-[18px] leading-[1.6] text-[var(--light-v)]/92 md:mt-16 md:text-[24px] md:leading-[1.65]">
+                <p class="font-semibold text-[var(--light-v)]">
+                    Vous pouvez également nous contacter au :
+                </p>
+
+                <p class="mt-8">contact@chorussymphonia.fr</p>
+
+                <p class="mt-8">03.13.45.85.95</p>
+
+                <p class="mt-8">
+                    Festival Chorus Symphonia Maison des Festivals 12, Rue de la Musique 25000 Besançon, France
+                </p>
+            </div>
         </div>
-
-        <aside>
-            <h2 class="mb-6 text-4xl md:text-5xl">Informations utiles</h2>
-
-            <p class="mb-4">
-                <strong>Email :</strong> contact@chorussymphonia.fr
-            </p>
-
-            <p class="mb-4">
-                <strong>Téléphone :</strong> 03 81 00 00 00
-            </p>
-
-            <p class="mb-4">
-                <strong>Adresse :</strong><br />
-                Citadelle de Besançon<br />
-                99 Rue des Fusillés de la Résistance<br />
-                25000 Besançon
-            </p>
-        </aside>
     </section>
 </Layout>

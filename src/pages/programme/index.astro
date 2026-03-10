@@ -1,10 +1,11 @@
 ---
 import Layout from "../../layouts/Layout.astro";
+import FloatingLabelCard from "../../components/FloatingLabelCard.astro";
 import { getArtistesByDate } from "../../../backend/backend.mjs";
 
 const representations = await getArtistesByDate();
 
-const getJourKey = (value) => {
+const getJourKey = (value: string | Date | null | undefined) => {
     if (!value) return "";
 
     const date = new Date(value);
@@ -23,7 +24,7 @@ const getJourKey = (value) => {
     return `${year}-${month}-${day}`;
 };
 
-const formatDateLabel = (value) => {
+const formatDateLabel = (value: string | Date | null | undefined) => {
     if (!value) return "";
 
     return new Intl.DateTimeFormat("fr-FR", {
@@ -58,13 +59,44 @@ const uniqueGenres = [
 ];
 ---
 
-<Layout title="Programme - Chorus Symphonia">
-    <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
-        <h1 class="mb-4 text-6xl md:text-7xl">Programme</h1>
-        <p class="mx-auto max-w-2xl text-lg md:text-xl">
-            Découvrez la programmation du festival et filtrez les
-            représentations par jour, par scène ou par genre.
-        </p>
+<Layout title="Programme - Chorus Symphonia" fullScreen={true}>
+    <section class="relative isolate">
+        <div class="relative h-[360px] md:h-[620px]">
+            <img
+                src="/img/Programme/imageheroprogramme.avif"
+                alt="Clavier de piano éclairé en bleu et violet"
+                class="absolute inset-0 h-full w-full object-cover"
+            />
+            <div class="absolute inset-x-0 bottom-0 h-[118px] bg-[var(--v-dark)] md:h-[148px]"></div>
+            <div class="absolute inset-x-0 bottom-[118px] h-24 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:bottom-[148px] md:h-32"></div>
+        </div>
+    </section>
+
+    <section class="relative z-20 mx-auto max-w-[390px] -mt-[88px] px-6 pb-10 pt-0 md:max-w-6xl md:-mt-[110px] md:px-10 md:pb-14">
+        <h1 class="text-[62px] font-normal leading-[0.9] text-[var(--light-v)] md:text-[84px]">
+            Programme
+        </h1>
+
+        <h2 class="max-w-[390px] pt-24 text-[31px] font-normal leading-[1.02] text-[var(--vi)] md:max-w-[720px] md:pt-32 md:text-[64px] md:leading-[68px]">
+            Quatre jours d'émotion à la
+            <br />
+            Citadelle
+        </h2>
+    </section>
+
+    <section class="mx-auto max-w-[390px] px-6 pb-10 md:max-w-6xl md:px-10 md:pb-14">
+        <div class="relative md:max-w-[860px]">
+            <p class="max-w-[360px] text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:max-w-[760px] md:text-[28px] md:leading-[1.5]">
+                <span class="text-[var(--vi)]">Du jeudi 28 au dimanche 31 août</span>, la Citadelle de Besançon se transforme en un écrin vibrant pour la musique classique et lyrique. Notre programmation est conçue pour être une symphonie d'expériences, mêlant les grandes oeuvres du répertoire à des moments de partage et de découverte.
+            </p>
+
+            <img
+                src="/icons/etoile3.svg"
+                alt=""
+                aria-hidden="true"
+                class="absolute bottom-0 right-8 h-[86px] w-10 md:right-10 md:h-[112px] md:w-14"
+            />
+        </div>
     </section>
 
     <section class="mx-auto max-w-6xl px-6 pb-8">
@@ -141,40 +173,44 @@ const uniqueGenres = [
     <section class="pb-16">
         {
             representations.length > 0 ? (
-                <div class="mx-auto grid max-w-6xl gap-6 px-6 md:grid-cols-2 lg:grid-cols-3">
+                <div class="mx-auto grid max-w-6xl gap-8 px-6 md:grid-cols-2 lg:grid-cols-3">
                     {representations.map((rep) => (
                         <article
-                            class="programme-item event-section border border-[var(--light-v)] bg-white/5 p-5"
+                            class="programme-item event-section group relative overflow-hidden border border-[var(--light-v)]/90 bg-[linear-gradient(180deg,rgba(255,255,255,0.03),rgba(255,255,255,0.015))] px-6 py-6 transition duration-300 hover:-translate-y-1 hover:border-[var(--vi)] hover:shadow-[0_22px_50px_rgba(0,0,0,0.28)] md:px-7 md:py-7"
                             data-date={getJourKey(rep.date_representation)}
                             data-scene={rep.expand?.scene?.nom}
                             data-genre={rep.expand?.artiste?.genre_musical}
                         >
-                            <p class="mb-3 text-sm md:text-base">
-                                <strong>
+                            <div class="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_top_right,rgba(142,77,228,0.12),transparent_42%)] opacity-80"></div>
+                            <div class="relative flex min-h-[214px] flex-col">
+                                <p class="mb-5 text-[15px] font-semibold leading-none text-[var(--light-v)] md:text-[17px]">
                                     {formatDateLabel(rep.date_representation)}
-                                </strong>
-                                {rep.heure_representation
-                                    ? ` • ${rep.heure_representation}`
-                                    : ""}
-                            </p>
+                                    {rep.heure_representation
+                                        ? ` • ${rep.heure_representation}`
+                                        : ""}
+                                </p>
 
-                            <h2 class="mb-3 text-4xl leading-none md:text-5xl">
-                                <a
-                                    href={`/artistes/${rep.expand?.artiste?.id}`}
-                                >
-                                    {rep.expand?.artiste?.nom ?? "Artiste"}
-                                </a>
-                            </h2>
+                                <h2 class="mb-5 text-[52px] leading-[0.9] tracking-[-0.02em] text-[var(--light-v)] md:text-[58px]">
+                                    <a
+                                        href={`/artistes/${rep.expand?.artiste?.id}`}
+                                        class="transition group-hover:text-white"
+                                    >
+                                        {rep.expand?.artiste?.nom ?? "Artiste"}
+                                    </a>
+                                </h2>
 
-                            <p class="mb-2">
-                                {rep.expand?.scene?.nom ??
-                                    "Scène non renseignée"}
-                            </p>
+                                <div class="mt-auto space-y-3">
+                                    <p class="text-[18px] leading-[1.2] text-[var(--light-v)] md:text-[20px]">
+                                        {rep.expand?.scene?.nom ??
+                                            "Scène non renseignée"}
+                                    </p>
 
-                            <p class="text-sm md:text-base">
-                                {rep.expand?.artiste?.genre_musical ??
-                                    "Genre non renseigné"}
-                            </p>
+                                    <p class="text-[18px] leading-none text-[var(--light-v)]/88 md:text-[20px]">
+                                        {rep.expand?.artiste?.genre_musical ??
+                                            "Genre non renseigné"}
+                                    </p>
+                                </div>
+                            </div>
                         </article>
                     ))}
                 </div>
@@ -184,6 +220,44 @@ const uniqueGenres = [
                 </p>
             )
         }
+    </section>
+
+    <section class="mx-auto flex max-w-[390px] flex-col items-center px-6 pb-12 pt-4 md:max-w-6xl md:pb-16 md:pt-6">
+        <div class="flex w-full flex-col items-center gap-8 md:gap-10">
+            <a
+                href="#"
+                class="inline-block transition duration-200 hover:opacity-90"
+            >
+                <img
+                    src="/icons/cta.svg"
+                    alt="Je prends mon billet !"
+                    class="h-auto w-[212px] md:w-[260px]"
+                />
+            </a>
+
+            <a
+                href="#"
+                class="inline-block transition duration-200 hover:opacity-90"
+            >
+                <img
+                    src="/icons/pdf.svg"
+                    alt="Je télécharge le PDF !"
+                    class="h-auto w-[212px] md:w-[260px]"
+                />
+            </a>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-[390px] px-6 pb-20 md:max-w-6xl md:px-10 md:pb-24">
+        <FloatingLabelCard
+            href="/scenes"
+            imageSrc="/img/Programme/vitrinescenesprogramme.avif"
+            imageAlt="Aller à la page Les scènes"
+            label="Les scènes"
+            aspectClass="aspect-[344/156]"
+            labelAlign="end"
+            labelWidthClass="w-[310px] justify-center md:w-[340px]"
+        />
     </section>
 
     <script>

@@ -2,64 +2,108 @@
 import Layout from "../layouts/Layout.astro";
 ---
 
-<Layout title="Infos pratiques - Chorus Symphonia">
-    <section class="mx-auto max-w-4xl px-6 pb-8 pt-32 text-center">
-        <h1 class="mb-4 text-5xl md:text-7xl">Infos pratiques</h1>
-        <p class="mx-auto max-w-2xl text-lg md:text-xl">
-            Toutes les informations utiles pour préparer votre venue au festival
-            Chorus Symphonia.
-        </p>
+<Layout title="Infos pratiques - Chorus Symphonia" fullScreen={true}>
+    <section class="relative isolate">
+        <div class="relative h-[360px] md:h-[620px]">
+            <img
+                src="/img/Informations/imageheroinfos.avif"
+                alt="Vue nocturne de la Citadelle de Besançon"
+                class="absolute inset-0 h-full w-full object-cover"
+            />
+            <div class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:h-40"></div>
+        </div>
     </section>
 
-    <section
-        class="mx-auto grid max-w-6xl gap-8 px-6 pb-16 md:grid-cols-[1.4fr_1fr]"
-    >
-        <div class="space-y-4">
-            <section class="border border-[var(--light-v)] bg-white/5 p-5">
-                <h2 class="mb-4 text-4xl md:text-5xl">Accès</h2>
-                <p>
-                    Le festival se déroule à la Citadelle de Besançon, 99 Rue
-                    des Fusillés de la Résistance, 25000 Besançon.
-                </p>
-            </section>
+    <section class="relative z-20 mx-auto max-w-[390px] -mt-[64px] overflow-visible px-6 pb-10 pt-0 md:max-w-6xl md:-mt-[82px] md:px-10 md:pb-14">
+        <h1 class="text-[62px] font-normal leading-[0.9] text-[var(--light-v)] md:text-[84px]">
+            Informations
+        </h1>
 
-            <section class="border border-[var(--light-v)] bg-white/5 p-5">
-                <h2 class="mb-4 text-4xl md:text-5xl">Horaires</h2>
-                <p>
-                    Les représentations ont lieu du 28 au 31 août 2026 selon la
-                    programmation. L’ouverture des accès se fait 30 minutes
-                    avant le début de chaque représentation.
-                </p>
-            </section>
+        <h2 class="max-w-[360px] pt-20 text-[34px] font-normal leading-[1.02] text-[var(--vi)] md:max-w-[760px] md:pt-28 md:text-[60px] md:leading-[64px]">
+            Préparez votre venue :
+            <br />
+            toutes les infos essentielles
+        </h2>
+    </section>
 
-            <section class="border border-[var(--light-v)] bg-white/5 p-5">
-                <h2 class="mb-4 text-4xl md:text-5xl">Billetterie</h2>
-                <p>
-                    La billetterie du festival est accessible en ligne. Les
-                    réservations sont conseillées pour les concerts du soir.
-                </p>
-            </section>
+    <section class="mx-auto max-w-[390px] px-6 pb-10 md:max-w-6xl md:px-10 md:pb-14">
+        <div class="relative md:max-w-[860px]">
+            <p class="max-w-[360px] text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:max-w-[760px] md:text-[28px] md:leading-[1.5]">
+                Afin de vous garantir une expérience sereine et inoubliable au coeur de la Citadelle de Besançon, voici toutes les informations pratiques pour planifier votre séjour et votre venue au festival Chorus Symphonia.
+            </p>
 
-            <section class="border border-[var(--light-v)] bg-white/5 p-5">
-                <h2 class="mb-4 text-4xl md:text-5xl">Transport</h2>
-                <p>
-                    L’accès est possible en voiture, en transports en commun et
-                    à pied depuis le centre-ville. Pensez à anticiper votre
-                    trajet les jours de grande affluence.
-                </p>
-            </section>
+            <img
+                src="/icons/etoile3.svg"
+                alt=""
+                aria-hidden="true"
+                class="absolute bottom-[-10px] right-2 h-[86px] w-10 md:bottom-0 md:right-10 md:h-[112px] md:w-14"
+            />
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-[390px] px-6 pb-14 md:max-w-6xl md:px-10 md:pb-18">
+        <div class="relative md:max-w-[860px]">
+            <h2 class="text-[27px] font-normal leading-none text-[var(--vi)] md:text-[42px]">
+                Tarifs
+            </h2>
+
+            <p class="mt-8 max-w-[360px] text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:max-w-[760px] md:text-[28px] md:leading-[1.5]">
+                Chorus Symphonia s'engage pour l'accessibilité de la musique classique.
+                <br />
+                Notre politique tarifaire est conçue pour être inclusive, avec une attention particulière portée aux publics fragiles et aux familles.
+            </p>
         </div>
 
-        <section>
-            <h2 class="mb-6 text-4xl md:text-5xl">FAQ</h2>
+        <div class="mt-10 max-w-[360px] space-y-7 text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:mt-12 md:max-w-[860px] md:space-y-8 md:text-[27px] md:leading-[1.5]">
+            <div>
+                <p><strong>Plein Tarif :</strong> Accès à une soirée de concert sur la Scène Principale.</p>
+                <p>À partir de 45 €</p>
+            </div>
+
+            <div>
+                <p><strong>Tarif Réduit :</strong> Étudiants, demandeurs d'emploi, moins de ans.</p>
+                <p>À partir de 30 €</p>
+            </div>
+
+            <div>
+                <p><strong>Tarif Solidaire :</strong> Réservé aux publics bénéficiant de minima sociaux.</p>
+                <p>À partir de 15 €</p>
+            </div>
+
+            <div>
+                <p><strong>Pass 4 Jours :</strong> Accès à toutes les soirées de la Scène Principale.</p>
+                <p>À partir de 150 €</p>
+            </div>
+
+            <div>
+                <p><strong>Activités Participatives :</strong> Ateliers, chorales, théâtre citoyen.</p>
+                <p>Gratuit, sur inscription</p>
+            </div>
+        </div>
+
+        <div class="mt-12 flex justify-center md:mt-14 md:justify-start">
+            <a href="#" class="inline-block transition duration-200 hover:opacity-90">
+                <img
+                    src="/icons/cta.svg"
+                    alt="Je prends mon billet !"
+                    class="h-auto w-[212px] md:w-[260px]"
+                />
+            </a>
+        </div>
+    </section>
+
+    <section class="mx-auto max-w-[390px] px-6 pb-16 md:max-w-6xl md:px-10 md:pb-20">
+        <section class="md:max-w-[860px]">
+            <h2 class="mb-6 text-[27px] font-normal leading-none text-[var(--light-v)] md:text-[42px]">
+                FAQ
+            </h2>
 
             <details class="mb-4 border border-[var(--light-v)] bg-white/5">
                 <summary class="cursor-pointer p-4 font-bold">
                     Faut-il réserver à l’avance ?
                 </summary>
                 <p class="px-4 pb-4">
-                    Oui, il est recommandé de réserver à l’avance pour les
-                    concerts les plus demandés.
+                    Oui, il est recommandé de réserver à l’avance pour les concerts les plus demandés.
                 </p>
             </details>
 
@@ -68,9 +112,7 @@ import Layout from "../layouts/Layout.astro";
                     Les lieux sont-ils accessibles ?
                 </summary>
                 <p class="px-4 pb-4">
-                    Une partie des espaces est accessible aux personnes à
-                    mobilité réduite. Il est conseillé de consulter les
-                    informations détaillées ou de contacter l’organisation.
+                    Une partie des espaces est accessible aux personnes à mobilité réduite. Il est conseillé de consulter les informations détaillées ou de contacter l’organisation.
                 </p>
             </details>
 
@@ -79,8 +121,7 @@ import Layout from "../layouts/Layout.astro";
                     Peut-on venir en famille ?
                 </summary>
                 <p class="px-4 pb-4">
-                    Oui, certaines représentations et animations sont adaptées à
-                    un public familial.
+                    Oui, certaines représentations et animations sont adaptées à un public familial.
                 </p>
             </details>
 
@@ -89,8 +130,7 @@ import Layout from "../layouts/Layout.astro";
                     Y a-t-il un parking à proximité ?
                 </summary>
                 <p class="px-4 pb-4">
-                    Oui, plusieurs zones de stationnement sont disponibles
-                    autour de la Citadelle selon l’affluence.
+                    Oui, plusieurs zones de stationnement sont disponibles autour de la Citadelle selon l’affluence.
                 </p>
             </details>
         </section>

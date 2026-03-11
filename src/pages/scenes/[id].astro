@@ -12,79 +12,129 @@ const scene = await getSceneById(id);
 const representations = await getArtistesBySceneId(id);
 
 const photo = scene?.photo ?? null;
+const photoSrc = scene && photo ? getImageUrl(scene, photo) : null;
+
+const formatRepresentationDate = (value: string | Date | null | undefined) => {
+    if (!value) return "Date non renseignée";
+
+    return new Intl.DateTimeFormat("fr-FR", {
+        timeZone: "Europe/Paris",
+        weekday: "long",
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+    }).format(new Date(value));
+};
 ---
 
-<Layout title={`${scene?.nom ?? "Scène"} - Chorus Symphonia`}>
+<Layout title={`${scene?.nom ?? "Scène"} - Chorus Symphonia`} fullScreen={true}>
     {
         scene ? (
             <>
-                <section class="mx-auto w-full max-w-6xl px-5 pb-8 pt-28 text-center sm:px-6 md:px-10 md:pt-32">
-                    <h1 class="mb-4 text-[clamp(3rem,14vw,4.5rem)]">{scene.nom}</h1>
-                    <p class="mx-auto max-w-2xl text-base sm:text-lg md:text-xl">
-                        {scene.localisation ?? "Localisation non renseignée"}
-                    </p>
+                <section class="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden pt-0">
+                    <div class="relative h-[140px] bg-[radial-gradient(circle_at_top_left,rgba(117,62,255,0.28),transparent_34%),linear-gradient(180deg,rgba(10,6,23,0.98)_0%,rgba(16,9,36,0.92)_58%,rgba(16,9,36,0)_100%)] sm:h-[156px] md:h-[184px]">
+                        <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_0%,transparent_18%,transparent_82%,rgba(255,255,255,0.04)_100%)]" />
+                        <div class="absolute left-[10%] top-[30px] h-24 w-24 rounded-full bg-[var(--vi)]/12 blur-3xl md:h-36 md:w-36" />
+                        <div class="absolute right-[14%] top-[46px] h-16 w-16 rounded-full bg-white/10 blur-2xl md:h-24 md:w-24" />
+                        <img
+                            src="/icons/etoile3.svg"
+                            alt=""
+                            aria-hidden="true"
+                            class="absolute bottom-5 right-6 h-12 w-6 opacity-75 md:bottom-7 md:right-12 md:h-16 md:w-8"
+                        />
+                    </div>
                 </section>
 
-                <section class="mx-auto grid w-full max-w-6xl gap-8 px-5 pb-12 sm:px-6 md:grid-cols-2 md:px-10">
-                    <div>
-                        {photo ? (
-                            <img
-                                src={getImageUrl(scene, photo)}
-                                alt={`Photo de ${scene.nom}`}
-                                class="aspect-[4/3] w-full border border-[var(--light-v)] object-cover"
-                            />
-                        ) : (
-                            <div class="flex aspect-[4/3] w-full items-center justify-center border border-[var(--light-v)] bg-white/5 text-center">
-                                Aucune image disponible
-                            </div>
-                        )}
-                    </div>
+                <section class="relative z-20 mx-auto w-full max-w-6xl overflow-visible px-5 pb-8 pt-10 sm:px-6 md:px-10 md:pb-10 md:pt-14">
+                    <p class="mb-5 inline-flex border border-[var(--light-v)]/35 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-[0.34em] text-[var(--light-v)]/72 md:mb-7 md:text-[12px]">
+                        Espace du festival
+                    </p>
 
-                    <div>
-                        <h2 class="mb-4 text-3xl sm:text-4xl md:text-5xl">Présentation</h2>
+                    <h1 class="max-w-[340px] text-[64px] font-normal leading-[0.88] tracking-[-0.04em] text-[var(--vi)] md:max-w-[760px] md:text-[124px]">
+                        {scene.nom}
+                    </h1>
+
+                    <p class="mt-6 max-w-[44rem] text-[18px] leading-[1.55] text-[var(--light-v)]/88 sm:text-[19px] md:mt-8 md:max-w-[760px] md:text-[28px] md:leading-[1.5]">
+                        {scene.localisation ?? "Localisation non renseignée"}
+                    </p>
+
+                    {photoSrc ? (
+                        <div class="relative mt-8 max-w-[540px] border border-[var(--light-v)]/75 bg-white/5 p-2 shadow-[0_26px_70px_rgba(0,0,0,0.32)] md:mt-10 md:p-3">
+                            <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.16),transparent_36%,transparent_70%,rgba(117,62,255,0.18))]" />
+                            <img
+                                src={photoSrc}
+                                alt={`Photo de ${scene.nom}`}
+                                class="aspect-[16/10] w-full object-cover"
+                            />
+                        </div>
+                    ) : (
+                        <div class="mt-8 flex aspect-[16/10] max-w-[540px] items-center justify-center border border-[var(--light-v)]/75 bg-white/5 text-center text-[var(--light-v)]/78 md:mt-10">
+                            Aucune image disponible
+                        </div>
+                    )}
+                </section>
+
+                <section class="mx-auto grid w-full max-w-6xl gap-10 px-5 pb-14 sm:px-6 md:grid-cols-[minmax(0,1.05fr)_minmax(0,0.95fr)] md:px-10 md:pb-18">
+                    <div class="relative md:max-w-[860px]">
+                        <h2 class="mb-6 text-[28px] font-normal leading-none text-[var(--light-v)] md:text-[42px]">
+                            Présentation
+                        </h2>
 
                         <div
-                            class="mb-6 space-y-4"
+                            class="max-w-[46rem] text-[18px] leading-[1.55] text-[var(--light-v)]/92 sm:text-[19px] md:max-w-[760px] md:text-[28px] md:leading-[1.5] [&_p]:mb-5 [&_a]:text-[var(--vi)]"
                             set:html={
                                 scene.description ??
                                 "<p>Aucune description disponible.</p>"
                             }
                         />
 
-                        <p class="mb-8">
-                            <strong>Capacité :</strong>
-                            {scene.capacite ?? "Non renseignée"}
-                        </p>
+                        <img
+                            src="/icons/etoile3.svg"
+                            alt=""
+                            aria-hidden="true"
+                            class="absolute bottom-[-10px] right-2 hidden h-[86px] w-10 sm:block md:bottom-0 md:right-10 md:h-[112px] md:w-14"
+                        />
+                    </div>
 
-                        <h2 class="mb-4 text-3xl sm:text-4xl md:text-5xl">
+                    <div class="md:pt-16">
+                        <div class="border border-[var(--light-v)]/30 bg-white/5 p-6 md:p-8">
+                            <p class="text-[11px] uppercase tracking-[0.32em] text-[var(--light-v)]/62 md:text-[12px]">
+                                Informations
+                            </p>
+
+                            <p class="mt-5 text-[24px] leading-[1.1] text-[var(--vi)] md:text-[40px]">
+                                Capacité : {scene.capacite ?? "Non renseignée"}
+                            </p>
+                        </div>
+
+                        <h2 class="mb-4 mt-10 text-[28px] font-normal leading-none text-[var(--light-v)] md:mt-12 md:text-[42px]">
                             Artistes programmés
                         </h2>
 
                         {representations.length > 0 ? (
-                            <ul class="mb-8 list-disc space-y-3 pl-5">
+                            <div class="mb-8 space-y-4 md:space-y-5">
                                 {representations.map((rep) => (
-                                    <li>
+                                    <article class="border border-[var(--light-v)]/30 bg-white/5 p-5 md:p-6">
                                         <a
                                             href={`/artistes/${rep.expand?.artiste?.id}`}
-                                            class="underline"
+                                            class="text-[20px] leading-[1.2] text-[var(--vi)] underline-offset-4 transition hover:underline md:text-[28px]"
                                         >
                                             {rep.expand?.artiste?.nom ??
                                                 "Artiste"}
                                         </a>
-                                        {" • "}
-                                        {rep.date_representation
-                                            ?.slice(0, 10)
-                                            .split("-")
-                                            .reverse()
-                                            .join("/")}
-                                        {rep.heure_representation
-                                            ? ` • ${rep.heure_representation}`
-                                            : ""}
-                                    </li>
+                                        <p class="mt-4 text-[16px] leading-[1.5] text-[var(--light-v)]/88 md:text-[22px]">
+                                            {formatRepresentationDate(
+                                                rep.date_representation,
+                                            )}
+                                            {rep.heure_representation
+                                                ? ` • ${rep.heure_representation}`
+                                                : ""}
+                                        </p>
+                                    </article>
                                 ))}
-                            </ul>
+                            </div>
                         ) : (
-                            <p class="mb-8">
+                            <p class="mb-8 text-[18px] leading-[1.55] text-[var(--light-v)]/92 md:text-[24px]">
                                 Aucun artiste n’est programmé sur cette scène.
                             </p>
                         )}

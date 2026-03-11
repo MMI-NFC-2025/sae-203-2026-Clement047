@@ -3,8 +3,8 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Infos pratiques - Chorus Symphonia" fullScreen={true}>
-    <section class="relative isolate">
-        <div class="relative h-[42svh] min-h-[300px] md:h-[620px]">
+    <section class="relative isolate overflow-hidden">
+        <div class="relative h-[42svh] min-h-[300px] md:h-[470px] xl:h-[560px]">
             <img
                 src="/img/Informations/imageheroinfos.avif"
                 alt="Vue nocturne de la Citadelle de Besançon"
@@ -18,7 +18,7 @@ import Layout from "../layouts/Layout.astro";
     </section>
 
     <section
-        class="relative z-20 mx-auto w-full max-w-6xl -mt-[64px] overflow-visible px-5 pb-10 pt-0 sm:px-6 md:-mt-[82px] md:px-10 md:pb-14"
+        class="relative z-20 mx-auto w-full max-w-6xl -mt-[64px] overflow-visible bg-[var(--v-dark)] px-5 pb-10 pt-0 sm:px-6 md:mt-0 md:px-10 md:pb-14 md:pt-10 xl:pt-12"
     >
         <h1
             class="text-[clamp(3.2rem,15vw,5.25rem)] font-normal leading-[0.9] text-[var(--light-v)]"
@@ -27,7 +27,7 @@ import Layout from "../layouts/Layout.astro";
         </h1>
 
         <h2
-            class="max-w-[22rem] pt-16 text-[clamp(2rem,10vw,3.75rem)] font-normal leading-[1.02] text-[var(--vi)] sm:max-w-[34rem] md:max-w-[760px] md:pt-28 md:leading-[64px]"
+            class="max-w-[22rem] pt-16 text-[clamp(2rem,10vw,3.75rem)] font-normal leading-[1.02] text-[var(--vi)] sm:max-w-[34rem] md:max-w-[760px] md:pt-8 md:leading-[56px] xl:pt-10 xl:leading-[64px]"
         >
             Préparez votre venue :
             <br />

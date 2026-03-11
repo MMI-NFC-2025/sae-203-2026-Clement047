@@ -3,34 +3,51 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Connexion - Chorus Symphonia" fullScreen={true}>
-    <section class="relative isolate">
-        <div class="relative h-[250px] sm:h-[320px] md:h-[460px]">
+    <section class="relative isolate overflow-hidden">
+        <div class="relative h-[42svh] min-h-[300px] md:h-[470px] xl:h-[560px]">
             <img
                 src="/img/Contact/imageherocontact.avif"
                 alt="Ciel étoilé en arrière-plan"
                 class="absolute inset-0 h-full w-full object-cover"
             />
-            <div class="absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:h-36"></div>
+            <div
+                class="absolute inset-x-0 bottom-0 h-28 bg-gradient-to-t from-[var(--v-dark)] to-transparent md:h-40"
+            >
+            </div>
         </div>
     </section>
 
-    <section class="relative z-20 mx-auto w-full max-w-[1200px] px-5 pb-10 pt-0 sm:px-6 md:px-10 md:pb-14">
-        <h1 class="-mt-10 text-[54px] leading-[0.9] text-[var(--light-v)] sm:-mt-12 sm:text-[68px] md:-mt-16 md:text-[88px]">
+    <section
+        class="relative z-20 mx-auto w-full max-w-6xl -mt-[66px] bg-[var(--v-dark)] px-5 pb-10 pt-0 sm:px-6 md:mt-0 md:px-10 md:pb-14 md:pt-10 xl:pt-12"
+    >
+        <h1
+            class="text-[clamp(3.2rem,15vw,5.25rem)] font-normal leading-[0.9] text-[var(--light-v)]"
+        >
             Connexion
         </h1>
     </section>
 
-    <section class="mx-auto w-full max-w-[1200px] px-5 pb-16 sm:px-6 md:px-10 md:pb-24">
-        <div class="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.75fr)] lg:gap-16">
+    <section
+        class="mx-auto w-full max-w-6xl px-5 pb-16 sm:px-6 md:px-10 md:pb-24"
+    >
+        <div
+            class="grid gap-10 lg:grid-cols-[minmax(0,0.95fr)_minmax(320px,0.75fr)] lg:gap-16"
+        >
             <div>
-                <p class="max-w-[48rem] text-[20px] leading-[1.45] text-[var(--light-v)]/92 sm:text-[24px] md:text-[32px]">
-                    Connectez-vous avec l’adresse email du visiteur enregistrée dans la collection
+                <p
+                    class="max-w-[48rem] text-[20px] leading-[1.45] text-[var(--light-v)]/92 sm:text-[24px] md:text-[32px]"
+                >
+                    Connectez-vous avec l’adresse email du visiteur enregistrée
+                    dans la collection
                     <span class="text-[var(--vi)]"> users</span>
-                    pour accéder à votre compte et modifier vos données depuis le front.
+                    pour accéder à votre compte et modifier vos données depuis le
+                    front.
                 </p>
             </div>
 
-            <div class="border border-[var(--light-v)] bg-white/5 p-5 sm:p-6 md:p-8">
+            <div
+                class="border border-[var(--light-v)] bg-white/5 p-5 sm:p-6 md:p-8"
+            >
                 <form id="loginForm" class="flex flex-col gap-4 md:gap-5">
                     <label class="sr-only" for="email">Adresse email</label>
                     <input
@@ -61,21 +78,36 @@ import Layout from "../layouts/Layout.astro";
                         Se connecter
                     </button>
 
-                    <p id="loginFeedback" class="min-h-[1.5rem] text-[16px] text-[var(--light-v)]/82"></p>
+                    <p
+                        id="loginFeedback"
+                        class="min-h-[1.5rem] text-[16px] text-[var(--light-v)]/82"
+                    >
+                    </p>
                 </form>
 
-                <div class="mt-8 border-t border-white/12 pt-6 text-[16px] leading-[1.55] text-[var(--light-v)]/82 sm:text-[18px]">
-                    <p>Après connexion, vous serez redirigé vers votre espace compte.</p>
-                    <p class="mt-4">Vous pourrez y modifier automatiquement vos informations depuis l’interface front.</p>
+                <div
+                    class="mt-8 border-t border-white/12 pt-6 text-[16px] leading-[1.55] text-[var(--light-v)]/82 sm:text-[18px]"
+                >
+                    <p>
+                        Après connexion, vous serez redirigé vers votre espace
+                        compte.
+                    </p>
+                    <p class="mt-4">
+                        Vous pourrez y modifier automatiquement vos informations
+                        depuis l’interface front.
+                    </p>
                 </div>
             </div>
         </div>
     </section>
 
     <script>
-        import { getPocketBaseClient, isAuthenticated } from "../scripts/pocketbase-browser.js";
+        import {
+            getPocketBaseClient,
+            isAuthenticated,
+        } from "../scripts/pocketbase-browser.js";
 
-        const form = document.getElementById("loginForm");
+        const form = document.getElementById("loginForm") as HTMLFormElement | null;
         const feedback = document.getElementById("loginFeedback");
 
         if (isAuthenticated()) {
@@ -86,7 +118,8 @@ import Layout from "../layouts/Layout.astro";
             event.preventDefault();
 
             const pb = getPocketBaseClient();
-            const formData = new FormData(form);
+            const currentForm = event.currentTarget as HTMLFormElement;
+            const formData = new FormData(currentForm);
             const email = String(formData.get("email") ?? "").trim();
             const password = String(formData.get("password") ?? "");
 
@@ -99,7 +132,8 @@ import Layout from "../layouts/Layout.astro";
                 window.location.href = "/compte";
             } catch (error) {
                 if (feedback) {
-                    feedback.textContent = "Connexion impossible. Vérifiez l’adresse email et le mot de passe.";
+                    feedback.textContent =
+                        "Connexion impossible. Vérifiez l’adresse email et le mot de passe.";
                 }
                 console.error(error);
             }

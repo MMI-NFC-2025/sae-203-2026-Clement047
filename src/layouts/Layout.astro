@@ -25,7 +25,9 @@ const { title = "Chorus Symphonia", fullScreen = false } = Astro.props;
 		/>
 	</head>
 
-	<body class="min-h-screen overflow-x-hidden bg-[var(--v-dark)] text-[var(--light-v)]">
+	<body
+		class="min-h-screen overflow-x-hidden bg-[var(--v-dark)] text-[var(--light-v)]"
+	>
 		<Header />
 
 		<main class:list={["overflow-x-hidden", fullScreen ? "" : "pt-24"]}>

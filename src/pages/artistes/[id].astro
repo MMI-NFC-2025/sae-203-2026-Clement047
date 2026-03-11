@@ -26,6 +26,17 @@ const galerieImages = artiste
       }))
     : [];
 
+const artisteNom = artiste?.nom ?? "Artiste";
+const artisteGenre = artiste?.genre_musical ?? "Artiste invité";
+const artisteDescription =
+    artiste?.description ?? "<p>Aucune description disponible.</p>";
+const mainVignette = photoSrc
+    ? {
+          src: photoSrc,
+          alt: `Photo principale de ${artisteNom}`,
+      }
+    : null;
+
 const formatRepresentationDate = (value: string | Date | null | undefined) => {
     if (!value) return "Date non renseignée";
 
@@ -39,41 +50,46 @@ const formatRepresentationDate = (value: string | Date | null | undefined) => {
 };
 ---
 
-<Layout title={`${artiste?.nom ?? "Artiste"} - Chorus Symphonia`} fullScreen={true}>
+<Layout title={`${artisteNom} - Chorus Symphonia`} fullScreen={true}>
     {
         artiste ? (
             <>
-                <section class="relative left-1/2 w-screen -translate-x-1/2 pt-0">
-                    <div class="relative w-full overflow-visible">
-                        <div class="relative h-[38vh] min-h-[300px] w-full overflow-hidden border-y border-[var(--light-v)] md:h-[52vh] md:min-h-[520px] md:max-h-[720px]">
-                            {
-                                photoSrc ? (
-                                    <img
-                                        src={photoSrc}
-                                        alt={`Photo principale de ${artiste.nom}`}
-                                        class="absolute inset-0 h-full w-full object-cover object-center scale-[1.12] md:scale-[1.16]"
-                                    />
-                                ) : (
-                                    <div class="absolute inset-0 bg-white/5"></div>
-                                )
-                            }
-                            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[var(--v-dark)]/12"></div>
-                            <div class="absolute inset-x-0 bottom-0 border-b border-[var(--light-v)]/85"></div>
-                        </div>
-
-                        <div class="pointer-events-none absolute bottom-0 left-0 z-20 translate-y-[62%] px-6 md:translate-y-[56%] md:px-10">
-                            <div class="bg-[var(--v-dark)] pr-4 pt-2 md:pr-6 md:pt-3">
-                                <h1 class="max-w-[340px] text-[64px] font-normal leading-[0.88] tracking-[-0.04em] text-[var(--vi)] md:max-w-[760px] md:text-[124px]">
-                                    {artiste.nom}
-                                </h1>
-                            </div>
-                        </div>
+                <section class="relative left-1/2 w-screen -translate-x-1/2 overflow-hidden pt-0">
+                    <div class="relative h-[140px] bg-[radial-gradient(circle_at_top_left,rgba(117,62,255,0.28),transparent_34%),linear-gradient(180deg,rgba(10,6,23,0.98)_0%,rgba(16,9,36,0.92)_58%,rgba(16,9,36,0)_100%)] sm:h-[156px] md:h-[184px]">
+                        <div class="absolute inset-0 bg-[linear-gradient(90deg,rgba(255,255,255,0.04)_0%,transparent_18%,transparent_82%,rgba(255,255,255,0.04)_100%)]" />
+                        <div class="absolute left-[10%] top-[30px] h-24 w-24 rounded-full bg-[var(--vi)]/12 blur-3xl md:h-36 md:w-36" />
+                        <div class="absolute right-[14%] top-[46px] h-16 w-16 rounded-full bg-white/10 blur-2xl md:h-24 md:w-24" />
+                        <img
+                            src="/icons/etoile3.svg"
+                            alt=""
+                            aria-hidden="true"
+                            class="absolute bottom-5 right-6 h-12 w-6 opacity-75 md:bottom-7 md:right-12 md:h-16 md:w-8"
+                        />
                     </div>
                 </section>
 
-                <section class="relative z-20 mx-auto w-full max-w-6xl overflow-visible px-5 pb-8 pt-[126px] sm:px-6 md:px-10 md:pb-10 md:pt-[170px]">
-                    <h2 class="max-w-[44rem] text-[24px] font-normal leading-[1.02] text-[var(--light-v)] sm:text-[26px] md:max-w-[760px] md:text-[48px] md:leading-[1.04]">
-                        {artiste.genre_musical ?? "Artiste invité"}
+                <section class="relative z-20 mx-auto w-full max-w-6xl overflow-visible px-5 pb-8 pt-10 sm:px-6 md:px-10 md:pb-10 md:pt-14">
+                    <p class="mb-5 inline-flex border border-[var(--light-v)]/35 bg-white/5 px-3 py-2 text-[11px] uppercase tracking-[0.34em] text-[var(--light-v)]/72 md:mb-7 md:text-[12px]">
+                        Artiste du festival
+                    </p>
+
+                    <h1 class="max-w-[340px] text-[64px] font-normal leading-[0.88] tracking-[-0.04em] text-[var(--vi)] md:max-w-[760px] md:text-[124px]">
+                        {artisteNom}
+                    </h1>
+
+                    {mainVignette && (
+                        <div class="relative mt-8 max-w-[430px] border border-[var(--light-v)]/75 bg-white/5 p-2 shadow-[0_26px_70px_rgba(0,0,0,0.32)] md:mt-10 md:max-w-[520px] md:p-3">
+                            <div class="pointer-events-none absolute inset-0 bg-[linear-gradient(135deg,rgba(255,255,255,0.16),transparent_36%,transparent_70%,rgba(117,62,255,0.18))]" />
+                            <img
+                                src={mainVignette.src}
+                                alt={mainVignette.alt}
+                                class="h-[150px] w-full object-cover object-center sm:h-[180px] md:h-[220px]"
+                            />
+                        </div>
+                    )}
+
+                    <h2 class="mt-8 max-w-[44rem] text-[24px] font-normal leading-[1.02] text-[var(--light-v)] sm:text-[26px] md:mt-10 md:max-w-[760px] md:text-[48px] md:leading-[1.04]">
+                        {artisteGenre}
                     </h2>
                 </section>
 
@@ -81,10 +97,7 @@ const formatRepresentationDate = (value: string | Date | null | undefined) => {
                     <div class="relative md:max-w-[860px]">
                         <div
                             class="max-w-[46rem] text-[18px] leading-[1.55] text-[var(--light-v)]/92 sm:text-[19px] md:max-w-[760px] md:text-[28px] md:leading-[1.5] [&_p]:mb-5 [&_a]:text-[var(--vi)]"
-                            set:html={
-                                artiste.description ??
-                                "<p>Aucune description disponible.</p>"
-                            }
+                            set:html={artisteDescription}
                         />
 
                         <img
@@ -107,20 +120,24 @@ const formatRepresentationDate = (value: string | Date | null | undefined) => {
                                 {artisteRepresentations.map((rep) => (
                                     <article class="border border-[var(--light-v)] bg-white/5 p-6 md:p-8">
                                         <p class="text-[19px] leading-[1.45] text-[var(--vi)] md:text-[28px]">
-                                            {formatRepresentationDate(rep.date_representation)}
+                                            {formatRepresentationDate(
+                                                rep.date_representation,
+                                            )}
                                             <br />
-                                            {rep.expand?.scene?.nom ?? "Scène non renseignée"}
+                                            {rep.expand?.scene?.nom ??
+                                                "Scène non renseignée"}
                                         </p>
 
                                         <p class="mt-8 text-[19px] leading-[1.45] text-[var(--vi)] md:text-[28px]">
-                                            {rep.heure_representation ?? "Horaire non renseigné"}
+                                            {rep.heure_representation ??
+                                                "Horaire non renseigné"}
                                             {rep.expand?.scene?.nom
                                                 ? ` • ${rep.expand.scene.nom}`
                                                 : ""}
                                         </p>
 
                                         <p class="mt-8 text-[19px] leading-[1.55] text-[var(--light-v)]/92 md:text-[28px] md:leading-[1.5]">
-                                            {artiste.nom}, {artiste.genre_musical ?? "artiste"}
+                                            {artisteNom}, {artisteGenre}
                                         </p>
                                     </article>
                                 ))}
@@ -149,7 +166,7 @@ const formatRepresentationDate = (value: string | Date | null | undefined) => {
                         <Carousel
                             images={galerieImages}
                             aspectClass="aspect-[16/10]"
-                            altPrefix={`Galerie de ${artiste.nom}`}
+                            altPrefix={`Galerie de ${artisteNom}`}
                         />
                     </section>
                 )}

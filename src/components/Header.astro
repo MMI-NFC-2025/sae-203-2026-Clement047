@@ -1,16 +1,21 @@
 ---
 const currentPath = Astro.url.pathname;
 
-const links = [
+const primaryLinks = [
     { href: "/programme", label: "Programme" },
     { href: "/artistes", label: "Artistes" },
     { href: "/scenes", label: "Scènes" },
     { href: "/infos-pratiques", label: "Informations pratiques" },
     { href: "/a-propos", label: "À propos" },
     { href: "/contact", label: "Contact" },
+];
+
+const utilityLinks = [
     { href: "/connexion", label: "Connexion" },
     { href: "/compte", label: "Compte" },
 ];
+
+const links = [...primaryLinks, ...utilityLinks];
 
 const isActive = (href: string) => {
     if (href === "/") return currentPath === "/";
@@ -18,11 +23,18 @@ const isActive = (href: string) => {
 };
 ---
 
-<header class="fixed inset-x-0 top-0 z-50 w-full">
-    <div class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--v-dark)]/92 via-[var(--v-dark)]/55 to-transparent md:h-36"></div>
+<header class="pointer-events-auto absolute inset-x-0 top-0 z-50 w-full">
+    <div
+        class="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-[var(--v-dark)]/92 via-[var(--v-dark)]/55 to-transparent md:h-36"
+    >
+    </div>
 
-    <div class="relative mx-auto max-w-6xl px-4 pt-4 md:px-6 md:pt-5">
-        <div class="flex items-center justify-between gap-4">
+    <div
+        class="relative mx-auto max-w-[1440px] px-4 pt-4 md:px-6 md:pt-5 xl:px-8"
+    >
+        <div
+            class="flex items-center justify-between gap-4 md:items-start md:gap-6 lg:items-center lg:gap-8"
+        >
             <a
                 href="/"
                 class="flex shrink-0 items-center transition-opacity duration-300 hover:opacity-80"
@@ -31,49 +43,87 @@ const isActive = (href: string) => {
                 <img
                     src="/icons/logofestival.svg"
                     alt="Chorus Symphonia"
-                    class="h-auto w-[96px] sm:w-[108px] md:w-[125px]"
+                    class="h-auto w-[96px] sm:w-[108px] md:w-[118px] xl:w-[132px]"
                 />
             </a>
 
-            <nav
-                class="hidden items-center gap-5 lg:flex"
-                aria-label="Navigation principale"
+            <div
+                class="hidden min-w-0 flex-1 items-end justify-end gap-3 md:!flex md:flex-col lg:flex-row lg:items-center"
             >
-                {
-                    links.map((link) => (
-                        <a
-                            href={link.href}
-                            aria-current={
-                                isActive(link.href) ? "page" : undefined
-                            }
-                            class={`text-sm uppercase tracking-[0.18em] transition hover:text-[var(--yellow)] ${
-                                isActive(link.href)
-                                    ? "font-bold text-[var(--yellow)]"
-                                    : "text-[var(--light-v)]"
-                            }`}
-                        >
-                            {link.label}
-                        </a>
-                    ))
-                }
-            </nav>
+                <nav
+                    class="pointer-events-auto flex max-w-full flex-wrap items-center justify-end gap-x-3 gap-y-2 rounded-[28px] border border-white/14 bg-[rgba(15,11,24,0.82)] px-4 py-2.5 shadow-[0_20px_50px_rgba(0,0,0,0.28)] backdrop-blur-md lg:px-5 lg:py-3 xl:gap-x-4 xl:px-6"
+                    aria-label="Navigation principale"
+                >
+                    {
+                        primaryLinks.map((link) => (
+                            <a
+                                href={link.href}
+                                aria-current={
+                                    isActive(link.href) ? "page" : undefined
+                                }
+                                class={`whitespace-nowrap px-1 text-[10px] uppercase tracking-[0.12em] transition hover:text-[var(--yellow)] lg:text-[11px] xl:text-xs ${
+                                    isActive(link.href)
+                                        ? "font-bold text-[var(--yellow)]"
+                                        : "text-[var(--light-v)]"
+                                }`}
+                            >
+                                {link.label}
+                            </a>
+                        ))
+                    }
+                </nav>
+
+                <div class="flex items-center gap-2 md:pr-1">
+                    {
+                        utilityLinks.map((link) => (
+                            <a
+                                href={link.href}
+                                aria-current={
+                                    isActive(link.href) ? "page" : undefined
+                                }
+                                class={`pointer-events-auto border px-3 py-2 text-[10px] uppercase tracking-[0.14em] transition lg:text-[11px] ${
+                                    isActive(link.href)
+                                        ? "border-[var(--yellow)] text-[var(--yellow)]"
+                                        : "border-white/20 text-[var(--light-v)] hover:border-[var(--yellow)] hover:text-[var(--yellow)]"
+                                }`}
+                            >
+                                {link.label}
+                            </a>
+                        ))
+                    }
+                </div>
+            </div>
 
             <button
                 id="menuBtn"
-                class="relative flex h-9 w-9 shrink-0 items-center justify-center self-center lg:hidden"
+                class="relative flex h-9 w-9 shrink-0 items-center justify-center self-center md:hidden"
                 aria-label="Ouvrir le menu"
                 aria-expanded="false"
                 aria-controls="mobileMenu"
                 type="button"
             >
+                <span class="hidden text-[10px] uppercase tracking-[0.18em] text-[var(--light-v)] md:inline-block">
+                    Menu
+                </span>
+                <span class="relative hidden h-4 w-6 md:block">
+                    <span
+                        class="absolute left-0 top-0 h-[2px] w-6 bg-[var(--light-v)]"
+                    ></span>
+                    <span
+                        class="absolute left-0 top-1/2 h-[2px] w-6 -translate-y-1/2 bg-[var(--light-v)]"
+                    ></span>
+                    <span
+                        class="absolute left-0 bottom-0 h-[2px] w-6 bg-[var(--light-v)]"
+                    ></span>
+                </span>
                 <span
-                    class="menu-line menu-line-top absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300"
+                    class="menu-line menu-line-top absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300 md:hidden"
                 ></span>
                 <span
-                    class="menu-line menu-line-middle absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300"
+                    class="menu-line menu-line-middle absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300 md:hidden"
                 ></span>
                 <span
-                    class="menu-line menu-line-bottom absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300"
+                    class="menu-line menu-line-bottom absolute h-[2px] w-8 bg-[var(--light-v)] transition-all duration-300 md:hidden"
                 ></span>
             </button>
         </div>
@@ -82,7 +132,7 @@ const isActive = (href: string) => {
 
 <nav
     id="mobileMenu"
-    class="pointer-events-none fixed inset-0 z-[100] opacity-0 transition duration-300 lg:hidden"
+    class="pointer-events-none fixed inset-0 z-[100] opacity-0 transition duration-300"
     aria-hidden="true"
 >
     <div class="absolute inset-0 bg-[var(--dark)]/92 backdrop-blur-md"></div>
@@ -135,9 +185,9 @@ const isActive = (href: string) => {
     const menuClose = document.getElementById("menuClose");
     const body = document.body;
 
-    const topLine = menuBtn?.querySelector(".menu-line-top");
-    const middleLine = menuBtn?.querySelector(".menu-line-middle");
-    const bottomLine = menuBtn?.querySelector(".menu-line-bottom");
+    const topLines = menuBtn?.querySelectorAll(".menu-line-top") ?? [];
+    const middleLines = menuBtn?.querySelectorAll(".menu-line-middle") ?? [];
+    const bottomLines = menuBtn?.querySelectorAll(".menu-line-bottom") ?? [];
 
     function openMenu() {
         mobileMenu?.classList.remove("pointer-events-none", "opacity-0");
@@ -146,13 +196,19 @@ const isActive = (href: string) => {
         mobileMenu?.setAttribute("aria-hidden", "false");
         body.classList.add("overflow-hidden");
 
-        topLine?.classList.add("rotate-45");
-        topLine?.classList.remove("-translate-y-2");
+        topLines.forEach((line) => {
+            line.classList.add("rotate-45");
+            line.classList.remove("-translate-y-2");
+        });
 
-        middleLine?.classList.add("opacity-0");
+        middleLines.forEach((line) => {
+            line.classList.add("opacity-0");
+        });
 
-        bottomLine?.classList.add("-rotate-45");
-        bottomLine?.classList.remove("translate-y-2");
+        bottomLines.forEach((line) => {
+            line.classList.add("-rotate-45");
+            line.classList.remove("translate-y-2");
+        });
     }
 
     function closeMenu() {
@@ -162,17 +218,28 @@ const isActive = (href: string) => {
         mobileMenu?.setAttribute("aria-hidden", "true");
         body.classList.remove("overflow-hidden");
 
-        topLine?.classList.remove("rotate-45");
-        topLine?.classList.add("-translate-y-2");
+        topLines.forEach((line) => {
+            line.classList.remove("rotate-45");
+            line.classList.add("-translate-y-2");
+        });
 
-        middleLine?.classList.remove("opacity-0");
+        middleLines.forEach((line) => {
+            line.classList.remove("opacity-0");
+        });
 
-        bottomLine?.classList.remove("-rotate-45");
-        bottomLine?.classList.add("translate-y-2");
+        bottomLines.forEach((line) => {
+            line.classList.remove("-rotate-45");
+            line.classList.add("translate-y-2");
+        });
     }
 
-    topLine?.classList.add("-translate-y-2");
-    bottomLine?.classList.add("translate-y-2");
+    topLines.forEach((line) => {
+        line.classList.add("-translate-y-2");
+    });
+
+    bottomLines.forEach((line) => {
+        line.classList.add("translate-y-2");
+    });
 
     menuBtn?.addEventListener("click", () => {
         const isOpen = menuBtn?.getAttribute("aria-expanded") === "true";
@@ -196,7 +263,7 @@ const isActive = (href: string) => {
     });
 
     window.addEventListener("resize", () => {
-        if (window.innerWidth >= 1024) {
+        if (window.innerWidth >= 768) {
             closeMenu();
         }
     });

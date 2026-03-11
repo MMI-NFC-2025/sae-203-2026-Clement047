@@ -107,7 +107,9 @@ import Layout from "../layouts/Layout.astro";
             isAuthenticated,
         } from "../scripts/pocketbase-browser.js";
 
-        const form = document.getElementById("loginForm") as HTMLFormElement | null;
+        const form = document.getElementById(
+            "loginForm",
+        ) as HTMLFormElement | null;
         const feedback = document.getElementById("loginFeedback");
 
         if (isAuthenticated()) {

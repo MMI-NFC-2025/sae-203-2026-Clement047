@@ -1,6 +1,6 @@
 import PocketBase from "pocketbase";
 
-const pb = new PocketBase("http://127.0.0.1:8090");
+const pb = new PocketBase("http://sae203.chorussymphonia.bertrand.optimiseus.fr:443");
 
 export function getImageUrl(record, fileName) {
     return pb.files.getURL(record, fileName);
